@@ -14,6 +14,9 @@ body {
     background-image: url('fondo.jpeg');
     background-size: cover;
     color: #fff;
+    padding: 7px;
+    margin: 10px;
+    border: 10px; color: #f7faf7;
 }
 
 .product-card {
