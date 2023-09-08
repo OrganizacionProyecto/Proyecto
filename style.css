@@ -1,5 +1,11 @@
 body {
     font-family: Arial, sans-serif;
+    background-image:linear-gradient(rgba(169, 194, 170, 0.75), rgba(169, 194, 170, 0.75) ), url('fondo.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    
 }
 
 .navbar {
@@ -51,3 +57,4 @@ padding: 5px;
     color: #fff;
     padding: 20px 0;
 }
+
