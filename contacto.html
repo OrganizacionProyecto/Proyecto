@@ -35,29 +35,24 @@
         <p>Volver a los sano, a lo rico que nos da la tierra</p>
     </div>
 
-    <section class="container mt-5">
-        <h2>Contacto</h2>
-        <p>Por favor, completa el formulario a continuación para ponerte en contacto con nosotros.</p>
-        <form action="procesar_formulario.php" method="post">
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required>
-            </div>
-            <div class="mb-3">
-                <label for="apellido" class="form-label">Apellido</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <div class="mb-3">
-                <label for="mensaje" class="form-label">Escribe un mensaje</label>
-                <textarea id="mensaje" cols="30" rows="10"></textarea>>
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-    </section>
+    <div class="container-contacto mt-5">
+        <form class="form">
+            <h2>Contacto</h2>
+            <p>Por favor, completa el formulario a continuación para ponerte en contacto con nosotros.</p>
+                <label for="nombre" >Nombre</label>
+                <input type="text" id="nombre" class="box" name="nombre" required>
+            
+                <label for="apellido" >Apellido</label>
+                <input type="text" id="apellido" class="box" name="apellido" required>
+        
+                <label for="email" >Correo Electrónico</label>
+                <input type="email" id="email" class="box" name="email" required>
+            
+                <label for="mensaje" >Escribe un mensaje</label>
+                <textarea  class="box" id="mensaje"  cols="30" rows="10"></textarea>>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>    
+    </div>
 
 
     <section id="contacto" class="container text-center">
