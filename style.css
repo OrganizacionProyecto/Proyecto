@@ -5,37 +5,46 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    
 }
 
-.navbar {
-    background-color: #449d44;
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-weight: bold;
 }
-
-.navbar-brand, .navbar-nav .nav-link {
+.nav h1{
     color: #fff;
+    font-size: 45px;
+}
+.nav ul li{
+    display: inline-block;
+    padding: 0px 20px;
+}
+.a{
+    color: #fff;
+    text-decoration: none;
+}
+.a:hover{
+    color:rgb(4, 31, 13) ;
 }
 
+.header{
+    background-color: #449d44;
+    background-size: cover;
+    background-image:linear-gradient(rgba(56, 85, 57, 0.75), rgba(169, 194, 170, 0.75))
+}
 .jumbotron {
-    background-image: url('fondo.jpeg');
     background-size: cover;
     color: #fff;
+    font-size: 20px;
 }
 
-.product-card {
-    box-sizing: content-box;
-width: 100%;
-border: solid hsl(225, 40%, 98%) 10px;
-padding: 5px;
-    text-align: center
-}
-
-.product-image-container {
-    box-sizing: border-box;
-    max-width: 60%;
-    max-height: 60%; /* Ajusta la altura máxima según tus preferencias */
-    text-align: center; /* Centra la imagen horizontalmente dentro del contenedor */
-    margin: 0 auto; /* Centra el contenedor dentro de la tarjeta del producto */
+.jumbotron h2{
+    font-size: 50px;
 }
 
 .imagen{
@@ -45,16 +54,13 @@ padding: 5px;
     height: auto;
 }
 
-.texto{
-    box-sizing: content-box;
-    margin: auto;
-    padding-inline: 10px;
-}
 
 .footer {
-    background-color: #449d44;
     color: #fff;
     padding: 20px 0;
+    background-color: #449d44;
+    background-size: cover;
+    background-image:linear-gradient(rgba(56, 85, 57, 0.75), rgba(169, 194, 170, 0.75))
 }
 
 .container-contacto{
@@ -84,7 +90,7 @@ padding: 5px;
     
 }
 
-.form h2{
+.form h3{
     font-size: 45px;
     color: #449d44;
     font-weight: 600;
@@ -130,18 +136,14 @@ padding: 5px;
 .info{
     margin-top: 200px;
     flex-direction: column;
-
-
 }
 .social{
     display: flex;
     margin-left: 40px;
-
 }
 
 .social img{
     width: 40px;
     margin-right: 60px;
-
 }
 
