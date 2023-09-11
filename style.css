@@ -47,6 +47,28 @@ body {
     font-size: 50px;
 }
 
+.titulo-principal{
+    text-align: center;
+    font-size: 2em;
+    margin: 0 0 1em;
+    clear:left;
+}
+
+.mapa{
+    padding: 3em 0;
+    background: linear-gradient(#FEFEFE, #888888)
+}
+
+.mapa p{
+    margin: 0 0 2em;
+    text-align: center;
+}
+
+.mapa-contenido{
+    width: 940px;
+    margin: 0 auto;
+}
+
 .imagen{
     max-width: 100%;
     max-height: 100%;
