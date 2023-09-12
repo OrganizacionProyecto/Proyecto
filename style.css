@@ -69,15 +69,30 @@ body {
     margin: 0 auto;
 }
 
+
+.product-image-container{
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20%;
+}
+
+
 .imagen{
     max-width: 100%;
     max-height: 100%;
     width: auto;
     height: auto;
+    transition: transform 1.5s ease;
+}
+
+.product-image-container:hover .imagen {
+    transform: scale(1.2);
 }
 
 
 .footer {
+    margin: 20px;
     color: #fff;
     padding: 20px 0;
     background-color: #449d44;
