@@ -184,3 +184,6 @@ body {
     margin-right: 60px;
 }
 
+.img_whatsapp {
+    clip-path: circle(50% at center);
+}
