@@ -35,17 +35,31 @@
             </div>
         </form>
         <form class="form2">
-            <label for="nombre" >Nombre</label>
+            <label for="nombre" >Nombre y Apellido</label>
             <input type="text" id="nombre" class="box" name="nombre" required>
     
-            <label for="apellido" >Apellido</label>
-            <input type="text" id="apellido" class="box" name="apellido" required>
-
             <label for="email" >Correo Electrónico</label>
             <input type="email" id="email" class="box" name="email" required>
-    
-            <label for="mensaje">Escribe un mensaje</label>
-            <textarea  class="box" id="mensaje"  cols="30" rows="10"></textarea>
+
+            <label for="edad">Edad</label>
+            <input type="number" id="edad" class="box" name="edad" required>
+
+            <label for="sexo">Sexo</label>
+            <select id="sexo" class="box" name="sexo" required>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</optio>
+            </select>
+
+            <label for="objetivo">Objetivo</label>
+            <select id="objetivo" class="box" name="objetivo" required>
+                <option value="perdida_peso">Pérdida de Peso</option>
+                <option value="mantenimiento">Mantenimiento</option>
+                <option value="aumento_masa">Aumento de Masa Muscular</option>
+            </select>
+
+            <label>Desea Recibir Asesoramiento Nutricional
+            <input type="checkbox" name="recibir_informacion" value="si"></label>
+            
             <button type="submit" value="enviar" class="submit">Enviar</button>
         </form>
     </div>
