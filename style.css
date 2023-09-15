@@ -101,7 +101,10 @@ body {
 
 
 .footer {
-    margin: 20px;
+    text-align: center;
+    margin-left:0px;
+    margin-right: 0%;
+    margin-top: 1%;
     color: #fff;
     padding: 20px 0;
     background-color: rgb(68, 157, 68);
@@ -193,6 +196,34 @@ body {
     margin-right: 60px;
 }
 
-.img_whatsapp {
-    clip-path: circle(50% at center);
+.container-boton{
+    background-color: #2e6329;
+    border: 1px solid #fff;
+    position: fixed;
+    z-index: 999;
+    border-radius: 50%;
+    bottom: 20px;
+    right: 25px;
+    padding: 25px;
+    transition: ease 0.3s;
+    animation: efecto 1.2s infinite;
+}
+
+.container-boton:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.boton{
+    width: 50px;
+    transition: ease 1s;
+}
+
+@keyframes efecto{
+    0%{
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.85);
+    }
+    100%{
+        box-shadow: 0 0 0 25px rgba(0, 0, 0, 0);
+    }
 }
