@@ -7,12 +7,21 @@ body {
     background-attachment: fixed;
 }
 
+.logo_nav{
+    padding: 5px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border-top-left-radius: 80px;
+    border-top-right-radius: 80px;
+}
+
 .nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-top: 20px;
-    padding-left: 5%;
+    padding-left: 1%;
     padding-right: 5%;
     font-weight: bold;
 }
@@ -33,7 +42,7 @@ body {
 }
 
 .header{
-    background-color: #449d44;
+    background-color: rgb(68, 157, 68);
     background-size: cover;
     background-image:linear-gradient(rgba(56, 85, 57, 0.75), rgba(169, 194, 170, 0.75))
 }
@@ -95,7 +104,7 @@ body {
     margin: 20px;
     color: #fff;
     padding: 20px 0;
-    background-color: #449d44;
+    background-color: rgb(68, 157, 68);
     background-size: cover;
     background-image:linear-gradient(rgba(56, 85, 57, 0.75), rgba(169, 194, 170, 0.75))
 }
@@ -129,7 +138,7 @@ body {
 
 .form h3{
     font-size: 45px;
-    color: #449d44;
+    color: rgb(68, 157, 68);
     font-weight: 600;
     margin-bottom: 25px;
     text-align: center;
@@ -159,7 +168,7 @@ body {
 }
 
 .submit{
-    background-color: #449d44;
+    background-color: rgb(68, 157, 68);
     border: 0;
     padding: 8px;
     color: #fff;
