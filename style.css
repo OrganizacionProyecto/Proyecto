@@ -63,6 +63,10 @@ body {
     clear:left;
 }
 
+.h2 {
+    font-size: 1.5rem;
+}
+
 .mapa{
     padding: 3em 0;
     background: linear-gradient(#FEFEFE, #888888)
