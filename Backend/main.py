@@ -4,6 +4,14 @@ from Pedido import Pedido
 from Categoria import Categoria
 from Conexion import Conexion
 
+def mostrar_menu():
+    print("Menu Principal:")
+    print("1. Gestionar Clientes")
+    print("2. Gestionar Categorias")
+    print("3. Gestionar Productos")
+    print("4. Gestionar Pedidos")
+    print("5. Salir del programa")
+
 def main():
     # Configurar los datos de conexión a la base de datos
     host = "localhost"
