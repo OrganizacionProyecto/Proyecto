@@ -28,6 +28,7 @@ body {
 .nav h1{
     color: #fff;
     font-size: 45px;
+
 }
 .nav ul li{
     display: inline-block;
@@ -47,18 +48,19 @@ body {
     background-image:linear-gradient(rgba(56, 85, 57, 0.75), rgba(169, 194, 170, 0.75))
 }
 .jumbotron h1{
-    font-size: 45px;
+    font-size: 50px;
     color: rgb(255, 255, 255);
     font-weight: 600;
     text-align: center;
-      
+    margin-top: 2%;   
 }
 
 .jumbotron p{
-    font-size: 30px;
+    font-size: 35px;
     color: rgb(255, 255, 255);
     font-weight: 600;
     text-align: center;
+    margin-top: 4%;
 }
 
 .jumbotron h2{
@@ -119,6 +121,26 @@ div > iframe {
     border-radius: 20%;
 }
 
+.titulo_prod{
+    font-size: 35px;
+    color:rgb(255, 255, 255);
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-align: center;
+    margin-top: 5%;
+}
+.prod {
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 25px;
+    text-align: center;
+}
+.prod_p{
+    font-size: 20px;
+    color: rgb(4, 31, 13);
+    margin-bottom: 25px;
+    text-align: center;
+}
 
 .imagen{
     max-width: 100%;
@@ -137,13 +159,15 @@ div > iframe {
     text-align: center;
     margin-left:0px;
     margin-right: 0%;
-    margin-top: 1%;
+    margin-top: 5%;
     color: #fff;
     padding: 20px 0;
     background-color: rgb(68, 157, 68);
     background-size: cover;
     background-image:linear-gradient(rgba(56, 85, 57, 0.75), rgba(169, 194, 170, 0.75))
 }
+
+
 
 .container-contacto{
     display: flex;
@@ -223,7 +247,7 @@ div > iframe {
 }
 
 .info{
-    margin-top: 95%;
+    margin-top: 92%;
     flex-direction: column;
 }
 
