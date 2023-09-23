@@ -28,6 +28,7 @@ body {
 .nav h1{
     color: #fff;
     font-size: 45px;
+
 }
 .nav ul li{
     display: inline-block;
@@ -46,10 +47,20 @@ body {
     background-size: cover;
     background-image:linear-gradient(rgba(56, 85, 57, 0.75), rgba(169, 194, 170, 0.75))
 }
-.jumbotron {
-    background-size: cover;
-    color: #fff;
-    font-size: 20px;
+.jumbotron h1{
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    text-align: center;
+    margin-top: 2%;   
+}
+
+.jumbotron p{
+    font-size: 35px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    text-align: center;
+    margin-top: 4%;
 }
 
 .jumbotron h2{
@@ -57,24 +68,35 @@ body {
 }
 
 .titulo-principal{
+    font-size: 35px;
+    color: rgb(68, 157, 68);
+    font-weight: 600;
+    margin-bottom: 25px;
     text-align: center;
-    font-size: 2em;
-    margin: 0 0 1em;
-    clear:left;
 }
 
 .h2 {
     font-size: 1.5rem;
+
 }
 
 .mapa{
+    height: 75%;
+    width: 85%;
     padding: 3em 0;
-    background: linear-gradient(#FEFEFE, #888888)
+    margin: auto;
+    margin-top: 25px;
+    border-radius: 25px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(#ffffff, #ffffff);
 }
+
 
 .mapa p{
     margin: 0 0 2em;
     text-align: center;
+    color: #2e6329;
+    font-size: 20px;
 }
 
 div > iframe {
@@ -88,6 +110,7 @@ div > iframe {
     max-width: 1000px;
     min-width: 320px;
     margin: auto;
+    
 }
 
 
@@ -98,6 +121,26 @@ div > iframe {
     border-radius: 20%;
 }
 
+.titulo_prod{
+    font-size: 35px;
+    color:rgb(255, 255, 255);
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-align: center;
+    margin-top: 5%;
+}
+.prod {
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 25px;
+    text-align: center;
+}
+.prod_p{
+    font-size: 20px;
+    color: rgb(4, 31, 13);
+    margin-bottom: 25px;
+    text-align: center;
+}
 
 .imagen{
     max-width: 100%;
@@ -116,7 +159,7 @@ div > iframe {
     text-align: center;
     margin-left:0px;
     margin-right: 0%;
-    margin-top: 1%;
+    margin-top: 5%;
     color: #fff;
     padding: 20px 0;
     background-color: rgb(68, 157, 68);
@@ -124,11 +167,13 @@ div > iframe {
     background-image:linear-gradient(rgba(56, 85, 57, 0.75), rgba(169, 194, 170, 0.75))
 }
 
+
+
 .container-contacto{
     display: flex;
     background-color: #fff;
-    height: 750px;
-    width: 950px;
+    height: 70%;
+    width: 85%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     margin: auto;
     margin-top: 150px;
@@ -136,7 +181,7 @@ div > iframe {
 }
 
 .form {
-    padding: 60px 80px;
+    padding: 3.5em 4em;
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -144,11 +189,10 @@ div > iframe {
 }
 
 .form2{
-    padding: 70px 60px;
+    padding: 4em 7em;
     width: 50%;
     display: flex;
     flex-direction: column;
-    
 }
 
 .form h3{
@@ -160,9 +204,17 @@ div > iframe {
 }
 
 .form p{
-    font-size: 15px;
-    color:rgb(4, 31, 13);
-    margin-bottom: 25px;
+    margin: 0 0 0;
+    text-align: center;
+    color: #2e6329;
+    font-size: 20px;
+}
+
+.numero_tel {
+    font-size: 50px;
+    color: rgb(68, 157, 68);
+    font-weight: 600;
+    margin-bottom: 50px;
     text-align: center;
 }
 
@@ -195,7 +247,7 @@ div > iframe {
 }
 
 .info{
-    margin-top: 400px;
+    margin-top: 92%;
     flex-direction: column;
 }
 
@@ -206,7 +258,7 @@ div > iframe {
 
 .social img{
     width: 40px;
-    margin-right: 60px;
+    margin-right: 120px;
 }
 
 .container-boton{
