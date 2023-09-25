@@ -28,9 +28,6 @@ CREATE TABLE IF NOT EXISTS `aymara`.`producto` (
     ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
 
-###xx_
-
-
 -- Table `aymara`.`cliente`
 CREATE TABLE IF NOT EXISTS `aymara`.`cliente` (
   `id` INT NOT NULL AUTO_INCREMENT,
