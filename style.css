@@ -285,6 +285,63 @@ div > iframe {
     width: 50px;
     transition: ease 1s;
 }
+/* ESTILO DEL FORMULARIO DE LOGIN*/
+.container-ingresar {
+    display: flex;
+    background-color: #fff;
+    height: 100%;
+    width: 85%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    margin: auto;
+    margin-top: 90px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+
+.container-ingresar h3{
+    font-size: 45px;
+    color: rgb(68, 157, 68);
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.formLogin{
+    padding: 3.5em 2em;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.box-ingresar{
+    border: 0;
+    background-color: #dfdfdf;
+    padding: 4px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    outline-color: #449d44;
+    width: 500px;
+}
+
+.submit-ingresar{
+    background-color: rgb(68, 157, 68);
+    border: 0;
+    padding: 4px;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 25px;
+    width: 500px;
+    margin-top: 10px;
+    box-shadow: 0 0 20px rgba(rgb(12, 29, 12), green, blue, alpha);
+}
+.formLogin p {
+    margin: 0 0 0;
+    text-align: center;
+    color: #2e6329;
+    font-size: 20px;
+}
+
 
 @keyframes efecto{
     0%{
@@ -296,5 +353,4 @@ div > iframe {
 }
 
 
-/* ESTILO DEL FORMULARIO DE LOGIN*/
 
