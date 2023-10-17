@@ -109,7 +109,7 @@ div > iframe {
 }
 
 .mapa-contenido{
-    width: 75%vw;
+    width: 75vw;
     max-width: 1000px;
     min-width: 320px;
     margin: auto;
@@ -246,7 +246,6 @@ div > iframe {
     border-radius: 25px;
     width: 350px;
     margin-top: 10px;
-    box-shadow: 0 0 20px rgba(rgb(12, 29, 12), green, blue, alpha);
 }
 
 .info{
