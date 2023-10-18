@@ -333,7 +333,6 @@ div > iframe {
     border-radius: 25px;
     width: 500px;
     margin-top: 10px;
-    box-shadow: 0 0 20px rgba(rgb(12, 29, 12), green, blue, alpha);
 }
 .formLogin p {
     margin: 0 0 0;
