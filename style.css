@@ -115,8 +115,6 @@ div > iframe {
     margin: auto;
     
 }
-
-
 .product-image-container{
     display: inline-block;
     position: relative;
@@ -294,7 +292,7 @@ div > iframe {
     width: 85%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     margin: auto;
-    margin-top: 90px;
+    margin-top: 75px;
     justify-content: center;
     align-items: center;
     border-radius: 25px;
@@ -351,7 +349,12 @@ div > iframe {
     color: #2e6329;
     font-size: 20px;
 }
-
+.registroForm p {
+    margin: 0 0 0;
+    text-align: center;
+    color: #2e6329;
+    font-size: 20px;
+}
 
 @keyframes efecto{
     0%{
