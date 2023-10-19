@@ -10,6 +10,11 @@ class Producto:
         self.stock = stock
         self.categoria_id = categoria_id
 
+    import mysql.connector
+
+class Producto:
+
+
     def registrarProducto(self, conexion):
         try:
             cursor = conexion.cursor()  # Obtén un cursor a partir de la conexión
@@ -34,10 +39,6 @@ class Producto:
         except mysql.connector.Error as error:
             print(f"Error al insertar producto en la base de datos: {error}")
 
-    import mysql.connector
-
-class Producto:
-    # ... (otros métodos e inicialización)
 
     def actualizarProducto(self, nombre=None, descripcion=None, precio=None, imagen=None, stock=None, categoria_id=None, conexion=None):
         try:
@@ -103,6 +104,50 @@ class Producto:
         print(f"Imagen: {self.imagen}")
         print(f"Stock: {self.stock}")
         print(f"Categoría ID: {self.categoria_id}")
+    
+    def mostrarTodosLosProductos(self, conexion):
+        try:
+            cursor = conexion.cursor()
+            # Define la sentencia SQL para seleccionar todos los productos
+            sql = "SELECT * FROM Producto"
+            cursor.execute(sql)
+            productos = cursor.fetchall()
+
+            if not productos:
+                print("No hay productos en la base de datos.")
+            else:
+                print("Lista de Productos:")
+                for producto in productos:
+                    producto_obj = Producto(*producto)
+                    producto_obj.mostrarProducto()
+                    print("\n")
+
+        except mysql.connector.Error as error:
+            print(f"Error al obtener la lista de productos: {error}")
+
+    def menu_producto(self, conexion):
+        while True:
+            print("Menu de Productos:")
+            print("1. Registrar Producto")
+            print("2. Actualizar Producto")
+            print("3. Eliminar Producto")
+            print("4. Mostrar Todos los Productos")
+            print("5. Volver al Menú Principal")
+            
+            opcion = input("Seleccione una opción: ")
+            
+            if opcion == "1":
+                self.registrarProducto(conexion)
+            elif opcion == "2":
+                self.actualizarProducto(conexion=conexion)
+            elif opcion == "3":
+                self.eliminarProducto(conexion)
+            elif opcion == "4":
+                self.mostrarTodosLosProductos(conexion)
+            elif opcion == "5":
+                break
+            else:
+                print("Opción no válida. Por favor, seleccione una opción válida.")
 
 
     def obtenerCategoria(self):
