@@ -1,368 +1,397 @@
-
-
-
 body {
-    font-family: Arial, sans-serif;
-    background-image:linear-gradient(rgba(169, 194, 170, 0.75), rgba(169, 194, 170, 0.75) ), url('fondo.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
+  font-family: Arial, sans-serif;
+  background-image: linear-gradient(
+      rgba(169, 194, 170, 0.75),
+      rgba(169, 194, 170, 0.75)
+    ),
+    url("fondo.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-.logo_nav{
-    padding: 5px;
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    border-top-left-radius: 80px;
-    border-top-right-radius: 80px;
+.logo_nav {
+  padding: 5px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
 }
 
-.nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 20px;
-    padding-left: 1%;
-    padding-right: 5%;
-    font-weight: bold;
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-left: 1%;
+  padding-right: 5%;
+  font-weight: bold;
 }
-.nav h1{
-    color: #fff;
-    font-size: 45px;
-
+.nav h1 {
+  color: #fff;
+  font-size: 45px;
 }
-.nav ul li{
-    display: inline-block;
-    padding: 0px 20px;
+.nav ul li {
+  display: inline-block;
+  padding: 0px 20px;
 }
-.a{
-    color: #fff;
-    text-decoration: none;
+.a {
+  color: #fff;
+  text-decoration: none;
 }
-.a:hover{
-    color:rgb(4, 31, 13) ;
-}
-
-.header{
-    background-color: rgb(68, 157, 68);
-    background-size: cover;
-    background-image:linear-gradient(rgba(56, 85, 57, 0.75), rgba(169, 194, 170, 0.75))
-}
-.jumbotron h1{
-    font-size: 50px;
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    text-align: center;
-    margin-top: 2%;   
+.a:hover {
+  color: rgb(4, 31, 13);
 }
 
-.jumbotron p{
-    font-size: 35px;
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    text-align: center;
-    margin-top: 4%;
+.header {
+  background-color: rgb(68, 157, 68);
+  background-size: cover;
+  background-image: linear-gradient(
+    rgba(56, 85, 57, 0.75),
+    rgba(169, 194, 170, 0.75)
+  );
+}
+.jumbotron h1 {
+  font-size: 50px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  text-align: center;
+  margin-top: 2%;
 }
 
-.jumbotron h2{
-    font-size: 50px;
+.jumbotron p {
+  font-size: 35px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  text-align: center;
+  margin-top: 4%;
 }
 
-.titulo-principal{
-    font-size: 35px;
-    color: rgb(68, 157, 68);
-    font-weight: 600;
-    margin-bottom: 25px;
-    text-align: center;
+.jumbotron h2 {
+  font-size: 50px;
+}
+
+.titulo-principal {
+  font-size: 35px;
+  color: rgb(68, 157, 68);
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
 .h2 {
-    font-size: 1.5rem;
-
+  font-size: 1.5rem;
 }
 
-.mapa{
-    height: 75%;
-    width: 85%;
-    padding: 3em 0;
-    margin: auto;
-    margin-top: 25px;
-    border-radius: 25px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(#ffffff, #ffffff);
+.mapa {
+  height: 75%;
+  width: 85%;
+  padding: 3em 0;
+  margin: auto;
+  margin-top: 25px;
+  border-radius: 25px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(#ffffff, #ffffff);
 }
 
-
-.mapa p{
-    margin: 0 0 2em;
-    text-align: center;
-    color: #2e6329;
-    font-size: 20px;
+.mapa p {
+  margin: 0 0 2em;
+  text-align: center;
+  color: #2e6329;
+  font-size: 20px;
 }
 
 div > iframe {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0px 3px 5px rgba(15,15,15,.5);
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0px 3px 5px rgba(15, 15, 15, 0.5);
 }
 
-.mapa-contenido{
-    width: 75%vw;
-    max-width: 1000px;
-    min-width: 320px;
-    margin: auto;
-    
+.mapa-contenido {
+  width: 75%vw;
+  max-width: 1000px;
+  min-width: 320px;
+  margin: auto;
 }
-.product-image-container{
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    border-radius: 20%;
+.product-image-container {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20%;
 }
 
-.titulo_prod{
-    font-size: 35px;
-    color:rgb(255, 255, 255);
-    font-weight: 600;
-    margin-bottom: 25px;
-    text-align: center;
-    margin-top: 5%;
+.titulo_prod {
+  font-size: 35px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+  margin-top: 5%;
 }
 .prod {
-    font-size: 30px;
-    color: rgb(255, 255, 255);
-    margin-bottom: 25px;
-    text-align: center;
+  font-size: 30px;
+  color: rgb(255, 255, 255);
+  margin-bottom: 25px;
+  text-align: center;
 }
-.prod_p{
-    font-size: 20px;
-    color: rgb(4, 31, 13);
-    margin-bottom: 25px;
-    text-align: center;
+.prod_p {
+  font-size: 20px;
+  color: rgb(4, 31, 13);
+  margin-bottom: 25px;
+  text-align: center;
 }
 
-.imagen{
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    transition: transform 1.5s ease;
+.imagen {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  transition: transform 1.5s ease;
 }
 
 .product-image-container:hover .imagen {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
-
 
 .footer {
-    text-align: center;
-    margin-left:0px;
-    margin-right: 0%;
-    margin-top: 5%;
-    color: #fff;
-    padding: 20px 0;
-    background-color: rgb(68, 157, 68);
-    background-size: cover;
-    background-image:linear-gradient(rgba(56, 85, 57, 0.75), rgba(169, 194, 170, 0.75))
+  text-align: center;
+  margin-left: 0px;
+  margin-right: 0%;
+  margin-top: 5%;
+  color: #fff;
+  padding: 20px 0;
+  background-color: rgb(68, 157, 68);
+  background-size: cover;
+  background-image: linear-gradient(
+    rgba(56, 85, 57, 0.75),
+    rgba(169, 194, 170, 0.75)
+  );
 }
 
-
-
-.container-contacto{
-    display: flex;
-    background-color: #fff;
-    height: 70%;
-    width: 85%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    margin: auto;
-    margin-top: 150px;
-    border-radius: 25px;
+.container-contacto {
+  display: flex;
+  background-color: #fff;
+  height: 70%;
+  width: 85%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  margin: auto;
+  margin-top: 150px;
+  border-radius: 25px;
 }
 
 .form {
-    padding: 3.5em 4em;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    
+  padding: 3.5em 4em;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
 }
 
-.form2{
-    padding: 4em 7em;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
+.form2 {
+  padding: 4em 7em;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
 }
 
-.form h3{
-    font-size: 45px;
-    color: rgb(68, 157, 68);
-    font-weight: 600;
-    margin-bottom: 25px;
-    text-align: center;
+.form h3 {
+  font-size: 45px;
+  color: rgb(68, 157, 68);
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
-.form p{
-    margin: 0 0 0;
-    text-align: center;
-    color: #2e6329;
-    font-size: 20px;
+.form p {
+  margin: 0 0 0;
+  text-align: center;
+  color: #2e6329;
+  font-size: 20px;
 }
 
 .numero_tel {
-    font-size: 50px;
-    color: rgb(68, 157, 68);
-    font-weight: 600;
-    margin-bottom: 50px;
-    text-align: center;
+  font-size: 50px;
+  color: rgb(68, 157, 68);
+  font-weight: 600;
+  margin-bottom: 50px;
+  text-align: center;
 }
 
 .label {
-    font-size: 15px;
-    color: rgb(4, 31, 13);
-    margin-bottom: 15px;
+  font-size: 15px;
+  color: rgb(4, 31, 13);
+  margin-bottom: 15px;
 }
 
-.box{
-    border: 0;
-    background-color: #dfdfdf;
-    padding: 6px;
-    border-radius: 25px;
-    margin-bottom: 25px;
-    outline-color: #449d44;
-    width: 350px;
+.box {
+  border: 0;
+  background-color: #dfdfdf;
+  padding: 6px;
+  border-radius: 25px;
+  margin-bottom: 25px;
+  outline-color: #449d44;
+  width: 350px;
 }
 
-.submit{
-    background-color: rgb(68, 157, 68);
-    border: 0;
-    padding: 8px;
-    color: #fff;
-    font-size: 15px;
-    border-radius: 25px;
-    width: 350px;
-    margin-top: 10px;
-    box-shadow: 0 0 20px rgba(rgb(12, 29, 12), green, blue, alpha);
+.submit {
+  background-color: rgb(68, 157, 68);
+  border: 0;
+  padding: 8px;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 25px;
+  width: 350px;
+  margin-top: 10px;
+  box-shadow: 0 0 20px rgba(rgb(12, 29, 12), green, blue, alpha);
 }
 
-.info{
-    margin-top: 92%;
-    flex-direction: column;
+.info {
+  margin-top: 92%;
+  flex-direction: column;
 }
 
-.social{
-    display: flex;
-    margin-left: 40px;
+.social {
+  display: flex;
+  margin-left: 40px;
 }
 
-.social img{
-    width: 40px;
-    margin-right: 120px;
+.social img {
+  width: 40px;
+  margin-right: 120px;
 }
 
-.container-boton{
-    background-color: #2e6329;
-    border: 1px solid #fff;
-    position: fixed;
-    z-index: 999;
-    border-radius: 50%;
-    bottom: 20px;
-    right: 25px;
-    padding: 25px;
-    transition: ease 0.3s;
-    animation: efecto 1.2s infinite;
+.container-boton {
+  background-color: #2e6329;
+  border: 1px solid #fff;
+  position: fixed;
+  z-index: 999;
+  border-radius: 50%;
+  bottom: 20px;
+  right: 25px;
+  padding: 25px;
+  transition: ease 0.3s;
+  animation: efecto 1.2s infinite;
 }
 
-.container-boton:hover{
-    transform: scale(1.1);
-    transition: 0.3s;
+.container-boton:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
 }
 
-.boton{
-    width: 50px;
-    transition: ease 1s;
+.boton {
+  width: 50px;
+  transition: ease 1s;
 }
 /* ESTILO DEL FORMULARIO DE LOGIN*/
 .container-ingresar {
-    display: flex;
-    background-color: #fff;
-    height: 65%;
-    width: 85%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    margin: auto;
-    margin-top: 75px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px;
+  display: flex;
+  background-color: #fff;
+  height: 65%;
+  width: 85%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  margin: auto;
+  margin-top: 75px;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
 }
 
-.container-ingresar h3{
-    font-size: 45px;
-    color: rgb(68, 157, 68);
-    font-weight: 600;
-    margin-bottom: 25px;
-    text-align: center;
+.container-ingresar_formulario {
+  min-width: 400px;
 }
 
-.formLogin{
-    padding: 3.5em 2em;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+.registerLink,
+.loginLink {
+  align-self: flex-end;
+}
+
+.container-ingresar h3 {
+  font-size: 45px;
+  color: rgb(68, 157, 68);
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.formLogin {
+  padding: 3.5em 2em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .registroForm {
-    padding: 3.5em 2em;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+  padding: 3.5em 2em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
-.box-ingresar{
-    border: 0;
-    background-color: #dfdfdf;
-    padding: 4px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    outline-color: #449d44;
-    width: 500px;
+.box-ingresar {
+  border: 0;
+  background-color: #dfdfdf;
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  outline-color: #449d44;
 }
 
-.submit-ingresar{
-    background-color: rgb(68, 157, 68);
-    border: 0;
-    padding: 4px;
-    color: #fff;
-    font-size: 15px;
-    border-radius: 25px;
-    width: 500px;
-    margin-top: 10px;
-    box-shadow: 0 0 20px rgba(rgb(12, 29, 12), green, blue, alpha);
+.submit-ingresar {
+  background-color: rgb(68, 157, 68);
+  border: 0;
+  padding: 4px;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 25px;
+  margin-top: 10px;
+  box-shadow: 0 0 20px rgba(rgb(12, 29, 12), green, blue, alpha);
 }
 .formLogin p {
-    margin: 0 0 0;
-    text-align: center;
-    color: #2e6329;
-    font-size: 20px;
+  margin: 0 0 0;
+  text-align: center;
+  color: #2e6329;
+  font-size: 20px;
 }
 .registroForm p {
-    margin: 0 0 0;
-    text-align: center;
-    color: #2e6329;
-    font-size: 20px;
+  margin: 0 0 0;
+  text-align: center;
+  color: #2e6329;
+  font-size: 20px;
 }
 
-@keyframes efecto{
-    0%{
-        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.85);
-    }
-    100%{
-        box-shadow: 0 0 0 25px rgba(0, 0, 0, 0);
-    }
+
+@media screen and (max-width: 1024px) {
+  .container-ingresar {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .container-ingresar_formulario {
+    min-width: auto;
+  }
+  .container-contacto{
+    height: auto;
+    flex-direction: column;
+  }
+  .container-contacto_formulario {
+    min-width: auto;
+  }
+
+  .form,
+  .form2,
+  .registroForm,
+  .formLogin {
+    padding: 2em 1em;
+  }
+}      
+@keyframes efecto {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.85);
+  }
+  100% {
+    box-shadow: 0 0 0 25px rgba(0, 0, 0, 0);
+  }
 }
 
 
