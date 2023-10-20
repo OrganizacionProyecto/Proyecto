@@ -32,8 +32,8 @@ def main():
                 pass
             if op == "2":
                 """Gestionar Categorias"""
-                categoria = Categoria(conexion)
-                categoria.menu_categorias()
+            categoria = Categoria(id=None, nombre=None)
+            categoria.menu_categorias(conexion)
             if op == "3":
                 """Gestionar Producto"""
                 producto = Producto()
