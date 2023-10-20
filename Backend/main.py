@@ -48,30 +48,6 @@ def main():
                 print("Opcion no valida, ingrese una que sea valida")
 
     conexion.cerrar() 
-    while True:
-        mostrar_menu()
-        op = input("Seleccione una opcion: ")
-        if op == "1":
-            """Gestionar Clientes"""
-            pass
-        if op == "2":
-            """Gestionar Categorias"""
-            pass
-        if op == "3":
-            """Gestionar Producto"""
-            pass
-        if op == "4":
-            """Gestionar Pedidos"""
-            pass
-        if op == "5":
-            """Salir"""
-            break
-        else:
-            print("Opcion no valida, ingrese una que sea valida")
-
-
-# Cerrar la conexión a la base de datos
-    conexion.cerrar()
 
 if __name__ == "__main__":
     main()

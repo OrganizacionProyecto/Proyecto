@@ -1,4 +1,5 @@
 import mysql.connector
+from Conexion import Conexion
 
 class Producto:
     def __init__(self, id, nombre, descripcion, precio, imagen, stock, categoria_id):
@@ -10,39 +11,46 @@ class Producto:
         self.stock = stock
         self.categoria_id = categoria_id
 
-    import mysql.connector
-
 class Producto:
-
 
     def registrarProducto(self, conexion):
         try:
-            cursor = conexion.cursor()  # Obtén un cursor a partir de la conexión
+                cursor = conexion.obtener_cursor()
 
-            # Define la sentencia SQL para insertar un producto en la base de datos
-            sql = """
-            INSERT INTO Producto (nombre, descripcion, precio, imagen, stock, categoria_id)
-            VALUES (%s, %s, %s, %s, %s, %s)
-            """
+                sql = """
+                INSERT INTO Producto (nombre, descripcion, precio, imagen, stock, categoria_id)
+                VALUES (%s, %s, %s, %s, %s, %s)
+                """
 
-            # Valores a insertar
-            valores = (self.nombre, self.descripcion, self.precio, self.imagen, self.stock, self.categoria_id)
+                # Valores a insertar
+                valores = (self.nombre, self.descripcion, self.precio, self.imagen, self.stock, self.categoria_id)
 
-            # Ejecuta la sentencia SQL
-            cursor.execute(sql, valores)
+                # Ejecuta la sentencia SQL
+                cursor.execute(sql, valores)
 
-            # Confirma los cambios en la base de datos
-            conexion.commit()
+                # Confirma los cambios en la base de datos
+                conexion.conexion.commit()
 
-            print("Producto insertado en la base de datos")
+                print("Producto insertado en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al insertar producto en la base de datos: {error}")
 
-
-    def actualizarProducto(self, nombre=None, descripcion=None, precio=None, imagen=None, stock=None, categoria_id=None, conexion=None):
+    def actualizarProducto(self, conexion):
         try:
-            cursor = conexion.cursor()
+            cursor = conexion.obtener_cursor()
+
+            # Solicitar al usuario el ID del producto a actualizar
+            producto_id = input("Ingrese el ID del producto que desea actualizar: ")
+
+            # Verificar si el producto con el ID proporcionado existe en la base de datos
+            cursor.execute("SELECT id FROM Producto WHERE id = %s", (producto_id,))
+            producto = cursor.fetchone()
+
+
+            if not producto:
+                print(f"No se encontró ningún producto con el ID {producto_id}.")
+                return
 
             # Define la sentencia SQL para actualizar un producto en la base de datos
             sql = """
@@ -51,15 +59,23 @@ class Producto:
             WHERE id = %s
             """
 
+            # Solicitar al usuario los nuevos valores
+            nombre = input("Nuevo nombre (deje en blanco para mantener el valor actual): ")
+            descripcion = input("Nueva descripción (deje en blanco para mantener el valor actual): ")
+            precio = input("Nuevo precio (deje en blanco para mantener el valor actual): ")
+            imagen = input("Nueva imagen (deje en blanco para mantener el valor actual): ")
+            stock = input("Nuevo stock (deje en blanco para mantener el valor actual): ")
+            categoria_id = input("Nuevo ID de categoría (deje en blanco para mantener el valor actual): ")
+
             # Valores a actualizar
             valores = (
-                nombre if nombre is not None else self.nombre,
-                descripcion if descripcion is not None else self.descripcion,
-                precio if precio is not None else self.precio,
-                imagen if imagen is not None else self.imagen,
-                stock if stock is not None else self.stock,
-                categoria_id if categoria_id is not None else self.categoria_id,
-                self.id
+                nombre if nombre else self.nombre,
+                descripcion if descripcion else self.descripcion,
+                precio if precio else self.precio,
+                imagen if imagen else self.imagen,
+                stock if stock else self.stock,
+                categoria_id if categoria_id else self.categoria_id,
+                producto_id
             )
 
             # Ejecuta la sentencia SQL para actualizar el producto
@@ -68,21 +84,33 @@ class Producto:
             # Confirma los cambios en la base de datos
             conexion.commit()
 
-            print(f"Producto ID {self.id} actualizado en la base de datos")
+            print(f"Producto ID {producto_id} actualizado en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al actualizar producto en la base de datos: {error}")
 
 
-    def eliminarProducto(self,conexion):
-        try:
-            cursor = conexion.cursor()
 
-            # Define la sentencia SQL para eliminar un cliente de la base de datos
+    def eliminarProducto(self, conexion):
+        try:
+            cursor = conexion.obtener_cursor()
+
+            # Solicitar al usuario el ID del producto a eliminar
+            producto_id = input("Ingrese el ID del producto que desea eliminar: ")
+
+            # Verificar si el producto con el ID proporcionado existe en la base de datos
+            cursor.execute("SELECT id FROM Producto WHERE id = %s", (producto_id,))
+            producto = cursor.fetchone()
+
+            if not producto:
+                print(f"No se encontró ningún producto con el ID {producto_id}.")
+                return
+
+            # Define la sentencia SQL para eliminar un producto de la base de datos
             sql = "DELETE FROM Producto WHERE id = %s"
 
             # Valor a insertar (el ID del producto a eliminar)
-            valor = (self.id,)
+            valor = (producto_id,)
 
             # Ejecuta la sentencia SQL
             cursor.execute(sql, valor)
@@ -90,10 +118,11 @@ class Producto:
             # Confirma los cambios en la base de datos
             conexion.commit()
 
-            print("Producto eliminado de la base de datos")
+            print(f"Producto con ID {producto_id} eliminado de la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al eliminar producto de la base de datos: {error}")
+
 
     def mostrarProducto(self):
         # Muestra la información del producto.
@@ -107,7 +136,8 @@ class Producto:
     
     def mostrarTodosLosProductos(self, conexion):
         try:
-            cursor = conexion.cursor()
+            cursor = conexion.obtener_cursor()
+
             # Define la sentencia SQL para seleccionar todos los productos
             sql = "SELECT * FROM Producto"
             cursor.execute(sql)
@@ -148,13 +178,4 @@ class Producto:
                 break
             else:
                 print("Opción no válida. Por favor, seleccione una opción válida.")
-
-
-    def obtenerCategoria(self):
-        # Implementa la lógica para obtener la categoría de un producto.
-        pass
-
-    def modificarCategoria(self):
-        # Implementa la lógica para modificar la categoría de un producto.
-       pass
 
