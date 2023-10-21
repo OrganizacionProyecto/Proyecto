@@ -4,76 +4,79 @@ document.addEventListener('DOMContentLoaded', function() {
   const form = document.querySelector('.form2');
 
   form.addEventListener('submit', function(e) {
-      e.preventDefault();
+    e.preventDefault();
 
-      alert('Los datos se han enviado correctamente.'); // Muestra una alerta
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
 
-      form.reset(); // Resetea el formulario después de enviar
+    if (nombre.trim() === '' || email.trim() === '') {
+      alert("Por favor, complete todos los campos.");
+      return;
+    }
 
-    });
+    if (!isValidEmail(email)) {
+      alert("Por favor, ingrese una dirección de correo electrónico válida.");
+      return;
+    }
+
+    alert("Su solicitud se ha enviado con éxito. En breve nos comunicaremos con usted.");
+
+    form.reset();
+  });
+
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+    return email.includes('@');
+  }
 });
 
 
-  
- //eventos del formulario de login
+//eventos del formulario de login
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('formLogin');
 
- document.getElementById('formLogin').addEventListener('submit', function(event1) {
-  event1.preventDefault(); // Evita que el formulario se envíe automáticamente
-  
-    var nomUsuario = document.getElementById('nombreUsuario').value;
-    var contraseña = document.getElementById('password').value;
-  
-    //variables ficticias para prueba
-    var usuarios = [
-      {nomUsuario: 'usuario1', contraseña: 'contraseña1'},
-      {nomUsuario: 'usuario2', contraseña: 'contraseña2'},
-    ];
-  
-    var usuarioCorrecto = false;
-  
-    for (var i = 0; i < usuarios.length; i++) {
-      if (usuarios[i].nomUsuario === nomUsuario && usuarios[i].contraseña === contraseña) {
-        usuarioCorrecto = true;
-        break;
+  if (form) {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+      var nomUsuario = document.getElementById('nombreUsuario').value;
+      var contraseña = document.getElementById('password').value;
+
+      //variables ficticias para prueba
+      var usuarios = [
+        {nomUsuario: 'usuario1', contraseña: 'contraseña1'},
+        {nomUsuario: 'usuario2', contraseña: 'contraseña2'},
+      ];
+
+      var usuarioCorrecto = false;
+
+      for (var i = 0; i < usuarios.length; i++) {
+        if (usuarios[i].nomUsuario === nomUsuario && usuarios[i].contraseña === contraseña) {
+          usuarioCorrecto = true;
+          break;
+        }
       }
-    }
-  
-    if (usuarioCorrecto) {
-      alert('Inicio de sesión exitoso');
-    } else {
-      alert('El nombre de usuario y/o la contraseña no son correctos.');
-    }
-  });
-  
+
+      if (usuarioCorrecto) {
+        alert('Inicio de sesión exitoso');
+      } else {
+        alert('El nombre de usuario y/o la contraseña no son correctos.');
+      }
+    });
+  }
+});
+
+
    //eventos del formulario de Registro
 
- document.getElementById('registroForm').addEventListener('submit', function(event1) {
-    event1.preventDefault(); // Evita que el formulario se envíe automáticamente
+   document.getElementById('registroForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita que el formulario se envíe automáticamente
   
     var regNombreUsuario = document.getElementById('regNombreUsuario').value;
     var contraseña = document.getElementById('regPassword').value;
     var mail= document.getElementById('regEmail').value;
-  
-    //variables ficticias para prueba
-    var usuarios = [
-      {regNombreUsuario: 'usuario1', contraseña: 'contraseña1', mail: 'usuario1@gmail.com'},
-      {regNombreUsuario: 'usuario2', contraseña: 'contraseña2', mail: 'usuario2@gmail.com'},
-    ];
-  
-    var usuarioCorrecto = false;
-  
-    for (var i = 0; i < usuarios.length; i++) {
-      if (usuarios[i].regNombreUsuario === regNombreUsuario && usuarios[i].contraseña === contraseña && 
-        usuarios[i].mail=== mail) {
-        usuarioCorrecto = true;
-        break;
-      }
-    }
-  
-    if (usuarioCorrecto) {
-      alert('Registro exitoso');
-    } else {
-      alert('Los datos ingresados son incorrectos.');
-    }
-  });
-  
+    
+      
+      alert('Excelente!!! en breve recibiras un mail con indicaciones.');
+    });
