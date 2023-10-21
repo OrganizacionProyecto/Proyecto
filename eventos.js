@@ -1,25 +1,24 @@
 //evento mensaje envio formulario contacto
 
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.form2');
-  
-    form.addEventListener('submit', function(e) {
+  const form = document.querySelector('.form2');
+
+  form.addEventListener('submit', function(e) {
       e.preventDefault();
-  
-      const nombre = document.getElementById('nombre').value;
-      const email = document.getElementById('email').value;
-  
-    alert("Su solicitud se ha enviado con éxito. En breve nos comunicaremos con usted.");
-  
-      form.reset();
+
+      alert('Los datos se han enviado correctamente.'); // Muestra una alerta
+
+      form.reset(); // Resetea el formulario después de enviar
+
     });
-  });
+});
+
 
   
  //eventos del formulario de login
 
- document.getElementById('formLogin').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+ document.getElementById('formLogin').addEventListener('submit', function(event1) {
+  event1.preventDefault(); // Evita que el formulario se envíe automáticamente
   
     var nomUsuario = document.getElementById('nombreUsuario').value;
     var contraseña = document.getElementById('password').value;
@@ -46,26 +45,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.form2');
-  
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-  
-      const nombre = document.getElementById('nombre').value;
-      const email = document.getElementById('email').value;
-  
-    alert("Su solicitud se ha enviado con éxito. En breve nos comunicaremos con usted.");
-  
-      form.reset();
-    });
-  });
+   //eventos del formulario de Registro
 
-  
- //eventos del formulario de Registro
-
- document.getElementById('registroForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+ document.getElementById('registroForm').addEventListener('submit', function(event1) {
+    event1.preventDefault(); // Evita que el formulario se envíe automáticamente
   
     var regNombreUsuario = document.getElementById('regNombreUsuario').value;
     var contraseña = document.getElementById('regPassword').value;
