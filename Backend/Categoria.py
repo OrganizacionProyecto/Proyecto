@@ -1,4 +1,5 @@
 import mysql.connector
+from conexion import Conexion
 
 class Categoria:
     def __init__(self, id, nombre):
@@ -7,9 +8,11 @@ class Categoria:
 
     def registrarCategoria(self, conexion):
         try:
-            cursor = conexion.cursor()  # Obtén un cursor a partir de la conexión
+            cursor = conexion.obtener_cursor()
 
-            # Define la sentencia SQL para insertar una categoría en la base de datos
+            # Solicitar al usuario el nombre de la nueva categoría
+            
+
             sql = """
             INSERT INTO Categoria (nombre)
             VALUES (%s)
@@ -18,44 +21,58 @@ class Categoria:
             # Valores a insertar como tupla
             valores = (self.nombre,)
 
-            # Ejecuta la sentencia SQL
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
-            print("Categoría insertada en la base de datos")
+            print(f"Categoría '{self.nombre}' insertada en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al insertar categoría en la base de datos: {error}")
 
-    
-    def eliminarCategoria(self,conexion):
+    def eliminarCategoria(self, conection):
         try:
-            cursor = conexion.cursor()
+            cursor = conection.obtener_cursor()
 
-            # Define la sentencia SQL para eliminar un cliente de la base de datos
+            # Solicitar al usuario el ID de la categoría a eliminar
+            categoria_id = input("Ingrese el ID de la categoría que desea eliminar: ")
+
             sql = "DELETE FROM Categoria WHERE id = %s"
 
-            # Valor a insertar (el ID del cliente a eliminar)
-            valor = (self.id,)
+            # Valor a insertar (el ID de la categoría a eliminar)
+            valor = (categoria_id,)
 
-            # Ejecuta la sentencia SQL
             cursor.execute(sql, valor)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conection.commit()
 
-            print("Categoria eliminada de la base de datos")
+            print(f"Categoría con ID {categoria_id} eliminada de la base de datos")
 
         except mysql.connector.Error as error:
-            print(f"Error al eliminar categoria de la base de datos: {error}")
+            print(f"Error al eliminar categoría de la base de datos: {error}")
 
-    def actualizarCategoria(self, nombre, conexion):
+    def actualizarCategoria(self, conexion):
         try:
-            cursor = conexion.cursor()
+            cursor = conexion.obtener_cursor()
 
-            # Define la sentencia SQL para actualizar una categoría en la base de datos
+            # Solicitar al usuario el ID de la categoría a actualizar
+            categoria_id = input("Ingrese el ID de la categoría que desea actualizar: ")
+
+            # Verificar si la categoría con el ID proporcionado existe en la base de datos
+            cursor.execute("SELECT id, nombre FROM Categoria WHERE id = %s", (categoria_id,))
+            categoria = cursor.fetchone()
+
+            if not categoria:
+                print(f"No se encontró ninguna categoría con el ID {categoria_id}.")
+                return
+
+            nuevo_nombre = input(f"Ingrese el nuevo nombre para la categoría (deje en blanco para mantener '{categoria[1]}'): ")
+
+            if not nuevo_nombre:
+                nuevo_nombre = categoria[1]
+
             sql = """
             UPDATE Categoria
             SET nombre = %s
@@ -63,15 +80,14 @@ class Categoria:
             """
 
             # Valores a actualizar
-            valores = (nombre, self.id)
+            valores = (nuevo_nombre, categoria_id)
 
-            # Ejecuta la sentencia SQL
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
             conexion.commit()
 
-            print(f"Categoría ID {self.id} actualizada en la base de datos")
+            print(f"Categoría con ID {categoria_id} actualizada en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al actualizar categoría en la base de datos: {error}")
@@ -81,6 +97,37 @@ class Categoria:
         print(f"ID de Categoría: {self.id}")
         print(f"Nombre de Categoría: {self.nombre}")
 
-    def productosCategoria(self):
-        pass
+    def mostrar_todas_las_categorias(self, conexion):
+        cursor = conexion.obtener_cursor()
+        sql = "SELECT * FROM Categoria"
+        cursor.execute(sql)
+        categorias = cursor.fetchall()
 
+        if categorias:
+            for categoria_data in categorias:
+                categoria = Categoria(*categoria_data)
+                categoria.mostrarCategoria()
+        else:
+            print("No hay categorías en la base de datos")
+
+    def menu_categorias(self, conexion):
+        pass
+        """while True:
+            print("\nGestionar Categorías:")
+            print("1. Registrar Categoría")
+            print("2. Actualizar Categoría")
+            print("3. Eliminar Categoría")
+            print("4. Mostrar Todas las Categorías")
+            print("5. Volver al Menú Principal")
+            opcion = input("Seleccione una opción: ")
+
+            if opcion == "1":
+                self.registrarCategoria(conexion)
+            elif opcion == "2":
+                self.actualizarCategoria(conexion)
+            elif opcion == "3":
+                self.eliminarCategoria(conexion)
+            elif opcion == "4":
+                self.mostrar_todas_las_categorias(conexion)
+            elif opcion == "5":
+                break"""

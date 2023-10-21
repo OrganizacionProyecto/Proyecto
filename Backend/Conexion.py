@@ -31,4 +31,11 @@ class Conexion:
             self.conexion.close()
             print("Conexión cerrada")
 
+    def obtener_cursor(self):
+        # Devuelve un cursor para la conexión actual
+        if self.conexion is not None and self.conexion.is_connected():
+            return self.conexion.cursor()
+        else:
+            print("Error: La conexión a la base de datos no está establecida.")
+            return None
 

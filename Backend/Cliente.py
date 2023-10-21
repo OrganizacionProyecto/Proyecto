@@ -1,4 +1,4 @@
-import Pedido
+import pedido
 import mysql.connector
 
 class Cliente:
@@ -13,11 +13,14 @@ class Cliente:
 
     def registrarCliente(self, conexion):
         try:
-            cursor = conexion.cursor()
+            cursor = conexion.obtener_cursor()
 
-            # Define la sentencia SQL para insertar un cliente en la base de datos
+            # Solicitar al usuario los datos del producto
+            # Convierte la entrada a un valor numérico
+
+            # Define la sentencia SQL para insertar un nuevo producto
             sql = """
-            INSERT INTO Cliente (nombre, apellido, correo, dni, contrasenia, domicilio)
+            INSERT INTO cliente (nombre, apellido, correo, dni, contrasenia, domicilio)
             VALUES (%s, %s, %s, %s, %s, %s)
             """
 
@@ -28,12 +31,12 @@ class Cliente:
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
-            print("Cliente insertado en la base de datos")
+            print("Producto insertado en la base de datos")
 
         except mysql.connector.Error as error:
-            print(f"Error al insertar cliente en la base de datos: {error}")
+            print(f"Error al insertar producto en la base de datos: {error}")
 
     def actualizarCliente(self, nombre=None, apellido=None, correo=None, domicilio=None, conexion=None):
         try:
@@ -94,7 +97,7 @@ class Cliente:
     def realizarPedido(self, productos, cantidad):
         # Implementa la lógica para que un cliente realice un pedido.
         # Puedes crear una instancia de la clase Pedido y agregarla a la lista de pedidos del cliente.
-        nuevo_pedido = Pedido(self, productos, cantidad)
+        nuevo_pedido = pedido(self, productos, cantidad)
         self.pedidos.append(nuevo_pedido)
 
     def cambiarContrasenia(self, nueva_contrasenia):
