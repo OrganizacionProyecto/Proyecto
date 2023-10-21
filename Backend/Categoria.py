@@ -11,7 +11,7 @@ class Categoria:
             cursor = conexion.obtener_cursor()
 
             # Solicitar al usuario el nombre de la nueva categoría
-            nuevo_nombre = input("Ingrese el nombre de la nueva categoría: ")
+            
 
             sql = """
             INSERT INTO Categoria (nombre)
@@ -19,21 +19,21 @@ class Categoria:
             """
 
             # Valores a insertar como tupla
-            valores = (nuevo_nombre,)
+            valores = (self.nombre,)
 
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
-            print(f"Categoría '{nuevo_nombre}' insertada en la base de datos")
+            print(f"Categoría '{self.nombre}' insertada en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al insertar categoría en la base de datos: {error}")
 
-    def eliminarCategoria(self, conexion):
+    def eliminarCategoria(self, conection):
         try:
-            cursor = conexion.obtener_cursor()
+            cursor = conection.obtener_cursor()
 
             # Solicitar al usuario el ID de la categoría a eliminar
             categoria_id = input("Ingrese el ID de la categoría que desea eliminar: ")
@@ -46,7 +46,7 @@ class Categoria:
             cursor.execute(sql, valor)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conection.commit()
 
             print(f"Categoría con ID {categoria_id} eliminada de la base de datos")
 
@@ -111,7 +111,8 @@ class Categoria:
             print("No hay categorías en la base de datos")
 
     def menu_categorias(self, conexion):
-        while True:
+        pass
+        """while True:
             print("\nGestionar Categorías:")
             print("1. Registrar Categoría")
             print("2. Actualizar Categoría")
@@ -129,4 +130,4 @@ class Categoria:
             elif opcion == "4":
                 self.mostrar_todas_las_categorias(conexion)
             elif opcion == "5":
-                break
+                break"""

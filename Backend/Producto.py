@@ -11,7 +11,6 @@ class Producto:
         self.stock = stock
         self.categoria_id = categoria_id
 
-class Producto:
 
     def registrarProducto(self, conexion):
         try:
@@ -156,7 +155,8 @@ class Producto:
             print(f"Error al obtener la lista de productos: {error}")
 
     def menu_producto(self, conexion):
-        while True:
+        pass
+        """while True:
             print("Menu de Productos:")
             print("1. Registrar Producto")
             print("2. Actualizar Producto")
@@ -177,5 +177,5 @@ class Producto:
             elif opcion == "5":
                 break
             else:
-                print("Opción no válida. Por favor, seleccione una opción válida.")
+                print("Opción no válida. Por favor, seleccione una opción válida.")"""
 
