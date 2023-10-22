@@ -28,7 +28,7 @@ class Cliente:
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print("Cliente insertado en la base de datos")
 

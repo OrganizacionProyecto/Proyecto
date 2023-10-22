@@ -3,10 +3,14 @@
 CREATE SCHEMA IF NOT EXISTS `aymara` DEFAULT CHARACTER SET utf8 ;
 USE `aymara` ;
 
--- Table `aymara`.`administrador`
-CREATE TABLE IF NOT EXISTS `aymara`.`administrador`(
-  `id` int(11) NOT NULL,
-  `id_usuario` int(11) DEFAULT NULL
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `apellido` varchar(255) NOT NULL,
+  `correo` varchar(255) NOT NULL,
+  `contrasenia` varchar(255) NOT NULL,
+  `domicilio` varchar(255) NOT NULL,
+  `tipo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Table `aymara`.`categoria`
@@ -44,56 +48,23 @@ INSERT INTO `aymara`.`producto` (`nombre`, `descripcion`, `precio`, `stock`, `ca
 ('Café Verde Plus', 'Suplemento dietario a base de café verde, vitamina B6, L-carnitina, té verde y garcinia cambogia.Ingesta diario recomendada 2 a 4 comprimidos por día. Presentación 60 comprimidos', 4436.00, 75, 1),
 ('Garcimax Slim', 'Suplemento dietario natural de heirbas (garcinia cambogia, fucus vesiculoso, té verde y café verde) y vitamina B1. Ingesta diaria recomendada 2 comprimidos diarios con abundante agua media hora antes de cada comida principal.Presentación 60 comprimidos', 2504.00, 50, 1);
 
--- Table `aymara`.`usuario`
-CREATE TABLE IF NOT EXISTS `aymara`.`usuario` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(255) NOT NULL,
-  `apellido` VARCHAR(255) NOT NULL,
-  `correo` VARCHAR(255) NOT NULL,
-  `dni` INT(11) NOT NULL,
-  `contrasenia` VARCHAR(255) NOT NULL,
-  `domicilio` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE = InnoDB;
-
-CREATE TABLE IF NOT EXISTS `aymara`. `cliente` (
+-- Table `aymara`.`cliente`
+CREATE TABLE IF NOT EXISTS `aymara`.`cliente` (
   `id` int(11) NOT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `dni` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Table `aymara`.`pedido`
-CREATE TABLE IF NOT EXISTS `aymara`.`pedido` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` INT(11) NOT NULL,
-  `estado` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `id_usuario_idx` (`id_usuario` ASC),
-  CONSTRAINT `id_usuario`
-    FOREIGN KEY (`id_usuario`)
-    REFERENCES `aymara`.`cliente` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+CREATE TABLE `pedido` (
+  `id` int(11) NOT NULL,
+  `id_cliente` int(11) DEFAULT NULL,
+  `estado` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Table `aymara`.`pedido_producto`
 CREATE TABLE IF NOT EXISTS `aymara`.`pedido_producto` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `pedido_id` INT(11) NULL,
-  `producto_id` INT(11) NULL,
-  PRIMARY KEY (`id`),
-  INDEX `pedido_id_idx` (`pedido_id` ASC),
-  INDEX `producto_id_idx` (`producto_id` ASC),
-  CONSTRAINT `pedido_id`
-    FOREIGN KEY (`pedido_id`)
-    REFERENCES `aymara`.`pedido` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `producto_id`
-    FOREIGN KEY (`producto_id`)
-    REFERENCES `aymara`.`producto` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE = InnoDB;
-
-
+  `id` int(11) NOT NULL,
+  `pedido_id` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

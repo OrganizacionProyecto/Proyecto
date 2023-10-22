@@ -4,6 +4,7 @@ from Pedido import Pedido
 from Categoria import Categoria
 from Conexion import Conexion
 from Administrador import Administrador
+from Usuario import Usuario
 def mostrar_menu():
     print("Menu Principal:")
     print("1. Gestionar Clientes")
@@ -11,7 +12,8 @@ def mostrar_menu():
     print("3. Gestionar Productos")
     print("4. Gestionar Pedidos")
     print("5. Gestionar Administradores")
-    print("6. Salir del programa")
+    print("6. Gestionar Usuarios")
+    print("7. Salir del programa")
 
 def main():
     # Configurar los datos de conexión a la base de datos
@@ -135,37 +137,52 @@ def main():
         if op == "5":
              while True:   
                 print("\nGestionar Administradores:")
-                print("1. Registrar Administrador")
-                print("2. Iniciar sesion")
-                print("3. Eliminar Administrador")
-                print("4. Actualizar Administrador")
-                print("5. Volver al Menú Principal")
+                print("1. Registrar Administrador a traves de id de usuario")
+                print("2. Volver al Menú Principal")
                 opcion = input("Seleccione una opción: ")
 
+                if opcion == "1":
+                    id_usuario = input("Ingrese id de usuario: ")
+                    administrador = Administrador(id = None, nombre = None, apellido = None, correo = None, contrasenia = None, domicilio = None, tipo=None, id_usuario=id_usuario)
+                    administrador.registrarAdmin(conection)
+                elif opcion == "2":
+                    break
+
+                
+        if op == "6":
+            while True:   
+                print("\nGestionar usuarios:")
+                print("Seccion en construccion")
+                print("1. Registrar Usuario")
+                print("2. Iniciar sesión")
+                print("3. Eliminar Usuario")
+                print("4. Actualizar usuario")
+                print("5. Volver al Menú Principal")
+                opcion = input("Seleccione una opción: ")
                 if opcion == "1":
                     nombre = input("Ingrese su nombre: ")
                     apellido = input("Ingrese su apellido: ")
                     correo = input("Ingrese su correo: ")  
-                    dni = input("Ingrese su DNI: ")
                     contrasenia = input("Ingrese su contraseña: ") 
                     domicilio = input("Ingrese su domicilio: ")
-                    cliente = Cliente(id, nombre, apellido, correo, dni, contrasenia, domicilio)
-                    administrador = Administrador(id, nombre, apellido, correo, dni, contrasenia, domicilio)
-                    administrador.registrarAdmin(conection)
+                    tipo=input("Tipo de usuario: ")
+                    usuario = Usuario (id, nombre, apellido, correo, contrasenia, domicilio, tipo)
+                    usuario.registrarUsuario(conection)
                 elif opcion == "2":
-                   cliente = Cliente(id=None, nombre=None, apellido=None, correo=None, dni=None, contrasenia=None, domicilio=None)
-                   cliente.iniciarSesion(conection, contrasenia=None)
+                   usuario = Usuario (id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
+                   usuario.iniciarSesion(conection, contrasenia=None)
                 elif opcion == "3":
-                    cliente = Cliente(id=None, nombre=None, apellido=None, correo=None, dni=None, contrasenia=None, domicilio=None)
-                    cliente.eliminarCliente(conection)
+                    usuario = Usuario (id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
+                    usuario.eliminarUsuario(conection)
                 elif opcion == "4":
-                    cliente = Cliente(id=None, nombre=None, apellido=None, correo=None, dni=None, contrasenia=None, domicilio=None)
-                    cliente.actualizarCliente(conection)
+                    usuario = Usuario (id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
+                    usuario.actualizarUsuario(conection)
                 elif opcion == "5":
                     break
-        if op == "6":
+                    
+        if op == "7":
             break
-        if op != "1" and "2" and "3" and "4" and "5" and "6":
+        if op != "1" and "2" and "3" and "4" and "5" and "6" and "7":
             print("Opcion no valida, ingrese una que sea valida")
 
     conection.cerrar() 

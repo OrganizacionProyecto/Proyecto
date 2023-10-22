@@ -15,8 +15,7 @@ class Administrador(Usuario):
        
     def registrarAdmin(self, conexion):
         try:
-            cursor = conexion.cursor()
-
+            cursor = conexion.obtener_cursor()
             # Define la sentencia SQL para insertar un cliente en la base de datos
             sql = """
             INSERT INTO Administrador (id_usuario)
@@ -33,14 +32,33 @@ class Administrador(Usuario):
             self.id = cursor.lastrowid
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
-            print("Admiistrador insertado en la base de datos")
+            print("Administrador insertado en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al insertar Administrador en la base de datos: {error}")
 
+    def eliminarAdmin(self, conexion):
+        try:
+            cursor = conexion.obtener_cursor()
 
+            # Define la sentencia SQL para eliminar un admin de la base de datos
+            sql = "DELETE FROM Administrador WHERE id = %s"
+
+            # Valor a insertar (el ID del admin a eliminar)
+            valor = (self.id,)
+
+            # Ejecuta la sentencia SQL
+            cursor.execute(sql, valor)
+
+            # Confirma los cambios en la base de datos
+            conexion.conexion.commit()
+
+            print("Admin eliminado de la base de datos")
+
+        except mysql.connector.Error as error:
+            print(f"Error al eliminar Admin de la base de datos: {error}")
     def procesarPedidos(self):
         
         pass

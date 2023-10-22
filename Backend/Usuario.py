@@ -1,5 +1,5 @@
 import mysql.connector
-
+from Conexion import Conexion
 class Usuario:
     def __init__(self, id, nombre, apellido, correo, contrasenia, domicilio, tipo):
         self.id = id
@@ -64,9 +64,9 @@ class Usuario:
 
     def registrarUsuario(self, conexion):
         try:
-            cursor = conexion.obtener_cursor
+            cursor = conexion.obtener_cursor()
 
-            # Define la sentencia SQL para insertar un cliente en la base de datos
+            # Define la sentencia SQL para insertar un usuario en la base de datos
             sql = """
             INSERT INTO Usuario (id,nombre, apellido, correo, contrasenia, domicilio, tipo)
             VALUES (%s, %s, %s, %s, %s, %s,%s)
@@ -82,37 +82,65 @@ class Usuario:
             self.id = cursor.lastrowid
 
             # Confirma los cambios en la base de datos
-            conexion.conexion.commit()
+            conexion.commit()
 
             print("Usuario insertado en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al insertar cliente en la base de datos: {error}")
 
-    def actualizarUsuario(self, conexion, nuevo_nombre, nuevo_apellido, nuevo_correo, nueva_contrasenia, nuevo_domicilio, nuevo_tipo):
+    def actualizarUsuario(self, conexion,):
         try:
             cursor = conexion.obtener_cursor()
 
-            # Define la sentencia SQL para actualizar un usuario en la base de datos
+            # Solicitar al usuario el ID del usuario a actualizar
+            usuario_id = input("Ingrese el ID del producto que desea actualizar: ")
+
+            # Verificar si el producto con el ID proporcionado existe en la base de datos
+            cursor.execute("SELECT id FROM Usuario WHERE id = %s", (usuario_id,))
+            usuario = cursor.fetchone()
+
+
+            if not usuario:
+                print(f"No se encontró ningún usuario con el ID {usuario_id}.")
+                return
+
+            # Define la sentencia SQL para actualizar un producto en la base de datos
             sql = """
             UPDATE Usuario
             SET nombre = %s, apellido = %s, correo = %s, contrasenia = %s, domicilio = %s, tipo = %s
             WHERE id = %s
             """
 
-            # Valores a actualizar
-            valores = (nuevo_nombre, nuevo_apellido, nuevo_correo, nueva_contrasenia, nuevo_domicilio, nuevo_tipo, self.id)
+            # Solicitar al usuario los nuevos valores
+            nombre = input("Nuevo nombre (deje en blanco para mantener el valor actual): ")
+            apellido = input("Nuevo apellido (deje en blanco para mantener el valor actual): ")
+            correo = input("Nuevo correo (deje en blanco para mantener el valor actual): ")
+            contrasenia = input("Nueva contraseña (deje en blanco para mantener el valor actual): ")
+            domicilio = input("Nuevo domicilio (deje en blanco para mantener el valor actual): ")
+            tipo = input("Nuevo tipo (deje en blanco para mantener el valor actual): ")
 
-            # Ejecuta la sentencia SQL para actualizar el usuario
+            # Valores a actualizar
+            valores = (
+                nombre if nombre else self.nombre,
+                apellido if apellido else self.apellido,
+                correo if correo else self.correo,
+                contrasenia if contrasenia else self.contrasenia,
+                domicilio if domicilio else self.domicilio,
+                tipo if tipo else self.tipo,
+            )
+
+            # Ejecuta la sentencia SQL para actualizar el producto
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
-            print(f"Usuario ID {self.id} actualizado en la base de datos")
+            print(f"Usuario ID {usuario_id} actualizado en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al actualizar usuario en la base de datos: {error}")
+
 
     def eliminarUsuario(self, conexion):
         try:
@@ -128,7 +156,7 @@ class Usuario:
             cursor.execute(sql, valor)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print("Eliminado de la base de datos")
 

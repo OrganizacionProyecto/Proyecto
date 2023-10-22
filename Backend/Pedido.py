@@ -50,7 +50,7 @@ class Pedido:
             self.id = cursor.lastrowid
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             # Agregar relaciones entre pedido y productos en la tabla Pedido_Producto
             for producto in self.productos:
@@ -60,7 +60,7 @@ class Pedido:
                 """
                 valores_relacion = (self.id, producto.id)
                 cursor.execute(sql_relacion, valores_relacion)
-                conexion.commit()
+                conexion.conexion.commit()
 
             print(f"Pedido #{self.id} insertado en la base de datos")
 
@@ -81,7 +81,7 @@ class Pedido:
             cursor.execute(sql, valor)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print("Pedido eliminado de la base de datos")
 

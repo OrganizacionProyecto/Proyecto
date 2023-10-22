@@ -11,8 +11,6 @@ class Producto:
         self.stock = stock
         self.categoria_id = categoria_id
 
-class Producto:
-
     def registrarProducto(self, conexion):
         try:
                 cursor = conexion.obtener_cursor()
@@ -82,7 +80,7 @@ class Producto:
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print(f"Producto ID {producto_id} actualizado en la base de datos")
 
@@ -116,7 +114,7 @@ class Producto:
             cursor.execute(sql, valor)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print(f"Producto con ID {producto_id} eliminado de la base de datos")
 
