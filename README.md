@@ -26,11 +26,7 @@ sinistri - Sebastian Balestri - balestri@gmail.com [Frontend]
 
     La pagina contara con Landing page, contactos, productos y registro e ingreso.
 
-<<<<<<< Updated upstream
-    El programa contara con CRUD sobre los clientes, productos y categorias, las cuales modificaran directamente la base de datos.
-=======
     El programa contara con CRUD sobre los clientes, productos, categorias, usuario y administrador, las cuales modificaran directamente la base de datos.
->>>>>>> Stashed changes
 
 # Requisitos
    - Python 3.7 o superior
@@ -59,13 +55,9 @@ Estructura del Proyecto:
         Producto.py (Metodos relacionados con productos)
         Categoria.py (Metodos relacionados con categorias)
         Cliente.py (Metodos relacionados con clientes)
-<<<<<<< Updated upstream
-        Pedido.py (Metodos relacionados con pedidos. Este archivo esta en construccion para el proximo cuatrimestre)
-=======
         Pedido.py (Metodos relacionados con pedidos.)
         Usuario.py (Metodos relacionados con usuarios.)
         Administrador.py (Metodos relacionados con usuarios.)
->>>>>>> Stashed changes
         diagrama_clases.png (Diagrama de clases)
         Caso_de_Uso.pdf (Archivo de lectura donde se explican los casos de uso del programa python)
 
