@@ -128,10 +128,6 @@ def main():
              while True:   
                 print("\nGestionar Pedido:")
                 print("1. Registrar Pedido")
-                print("2. Iniciar sesion")
-                print("3. Eliminar Pedido")
-                print("4. Actualizar Administrador")
-                print("5. Volver al Menú Principal")
                 opcion = input("Seleccione una opción: ")
         
         if op == "5":
