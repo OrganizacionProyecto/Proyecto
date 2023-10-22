@@ -11,7 +11,7 @@ class Categoria:
             cursor = conexion.obtener_cursor()
 
             # Solicitar al usuario el nombre de la nueva categoría
-            nuevo_nombre = input("Ingrese el nombre de la nueva categoría: ")
+            
 
             sql = """
             INSERT INTO Categoria (nombre)
@@ -19,14 +19,14 @@ class Categoria:
             """
 
             # Valores a insertar como tupla
-            valores = (nuevo_nombre,)
+            valores = (self.nombre,)
 
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
-            print(f"Categoría '{nuevo_nombre}' insertada en la base de datos")
+            print(f"Categoría '{self.nombre}' insertada en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al insertar categoría en la base de datos: {error}")
@@ -46,7 +46,7 @@ class Categoria:
             cursor.execute(sql, valor)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print(f"Categoría con ID {categoria_id} eliminada de la base de datos")
 
@@ -85,7 +85,7 @@ class Categoria:
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print(f"Categoría con ID {categoria_id} actualizada en la base de datos")
 
@@ -110,23 +110,3 @@ class Categoria:
         else:
             print("No hay categorías en la base de datos")
 
-    def menu_categorias(self, conexion):
-        while True:
-            print("\nGestionar Categorías:")
-            print("1. Registrar Categoría")
-            print("2. Actualizar Categoría")
-            print("3. Eliminar Categoría")
-            print("4. Mostrar Todas las Categorías")
-            print("5. Volver al Menú Principal")
-            opcion = input("Seleccione una opción: ")
-
-            if opcion == "1":
-                self.registrarCategoria(conexion)
-            elif opcion == "2":
-                self.actualizarCategoria(conexion)
-            elif opcion == "3":
-                self.eliminarCategoria(conexion)
-            elif opcion == "4":
-                self.mostrar_todas_las_categorias(conexion)
-            elif opcion == "5":
-                break
