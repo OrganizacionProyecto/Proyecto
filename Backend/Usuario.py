@@ -55,11 +55,33 @@ class Usuario:
     def cambiarContrasenia(self, nueva_contrasenia):
         self.contrasenia = nueva_contrasenia
 
-    def iniciarSesion(self, correo, contrasenia):
-        # Implementación para iniciar sesión de un cliente
-        if self.correo == correo and self.contrasenia == contrasenia:
-            return True
-        else:
+    def iniciarSesion(self, correo, contrasenia, conexion):
+        try:
+            cursor = conexion.obtener_cursor()
+
+            # Define la sentencia SQL para buscar un usuario por correo y contraseña
+            sql = "SELECT id, nombre, apellido, domicilio, tipo FROM Usuario WHERE correo = %s AND contrasenia = %s"
+
+            # Valores a buscar (correo y contraseña)
+            valores = (correo, contrasenia)
+
+            # Ejecuta la sentencia SQL
+            cursor.execute(sql, valores)
+
+            # Recupera los datos del usuario si se encuentra
+            usuario_data = cursor.fetchone()
+
+            if usuario_data:
+                # Si los datos existen en la base de datos, asigna los valores al objeto Usuario
+                self.id, self.nombre, self.apellido, self.domicilio, self.tipo, = usuario_data
+                print(f"Inicio de sesión exitoso. Bienvenido, {self.nombre} {self.apellido}!")
+                return True
+            else:
+                print("Credenciales incorrectas. Inicio de sesión fallido.")
+                return False
+
+        except mysql.connector.Error as error:
+            print(f"Error al iniciar sesión: {error}")
             return False
 
     def registrarUsuario(self, conexion):
@@ -89,53 +111,103 @@ class Usuario:
         except mysql.connector.Error as error:
             print(f"Error al insertar cliente en la base de datos: {error}")
 
-    def actualizarUsuario(self, conexion, nuevo_nombre, nuevo_apellido, nuevo_correo, nueva_contrasenia, nuevo_domicilio, nuevo_tipo):
+    def actualizarUsuario(self, conexion):
         try:
             cursor = conexion.obtener_cursor()
+            usuario_id = input("Ingrese el ID del usuario que desea actualizar: ")
 
-            # Define la sentencia SQL para actualizar un usuario en la base de datos
+            # Verificar si el producto con el ID proporcionado existe en la base de datos
+            cursor.execute("SELECT id FROM Usuario WHERE id = %s", (usuario_id,))
+            producto = cursor.fetchone()
+
+            if not producto:
+                print(f"No se encontró ningún Usuario con el ID {usuario_id}.")
+                return
+
+
+            # Define la sentencia SQL para actualizar un cliente en la base de datos
             sql = """
             UPDATE Usuario
-            SET nombre = %s, apellido = %s, correo = %s, contrasenia = %s, domicilio = %s, tipo = %s
+            SET nombre = %s, apellido = %s, correo = %s, contrasenia = %s, domicilio = %s
             WHERE id = %s
             """
 
+            nombre = input("Nuevo nombre: ")
+            apellido = input("Nuevo apellido: ")
+            correo = input("Nuevo correo: ")
+            contrasenia = input("Nueva contraseña: ")
+            domicilio = input("Nuevo domicilio: ")
             # Valores a actualizar
-            valores = (nuevo_nombre, nuevo_apellido, nuevo_correo, nueva_contrasenia, nuevo_domicilio, nuevo_tipo, self.id)
+            valores = (
+                nombre if nombre  else self.nombre,
+                apellido if apellido  else self.apellido,
+                correo if correo  else self.correo,
+                contrasenia if contrasenia  else self.contrasenia,
+                domicilio if domicilio  else self.domicilio,
+                usuario_id
+            )
 
-            # Ejecuta la sentencia SQL para actualizar el usuario
+            # Ejecuta la sentencia SQL para actualizar el cliente
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print(f"Usuario ID {self.id} actualizado en la base de datos")
 
         except mysql.connector.Error as error:
-            print(f"Error al actualizar usuario en la base de datos: {error}")
-
-    def eliminarUsuario(self, conexion):
+            print(f"Error al actualizar usuario en la  base de datos: {error}")
+            
+    def eliminarUsuario(self, conexion, id):
+        
         try:
             cursor = conexion.obtener_cursor()
-
             # Define la sentencia SQL para eliminar un cliente de la base de datos
             sql = "DELETE FROM Usuario WHERE id = %s"
 
             # Valor a insertar (el ID del usuario a eliminar)
-            valor = (self.id,)
+            valor = (id,)
 
             # Ejecuta la sentencia SQL
             cursor.execute(sql, valor)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print("Eliminado de la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al eliminar de la base de datos: {error}")
 
+    def mostrarTodosLosUsuarios(self, conexion):
+            try:
+                cursor = conexion.obtener_cursor()
+
+                # Define la sentencia SQL para seleccionar todos los productos
+                sql = "SELECT * FROM Usuario"
+                cursor.execute(sql)
+                Usuarios = cursor.fetchall()
+
+                if not Usuarios:
+                    print("No hay usuarios en la base de datos.")
+                else:
+                    print("Lista de usuarios:")
+                    for usuario in Usuarios:
+                        usuario_obj = Usuario(*usuario)
+                        usuario_obj.mostrarUsuario()
+                        print("\n")
+
+            except mysql.connector.Error as error:
+                print(f"Error al obtener la lista de usuarios: {error}")
+
     def mostrarUsuario(self):
-        return f"{self.nombre} {self.apellido}"
+        print("ID:", self.id)
+        print("Nombre:", self.nombre)
+        print("Apellido:", self.apellido)
+        print("Correo:", self.correo)
+        print("Domicilio:", self.domicilio)
+        print("Tipo:", self.tipo)
+        print()
+
 
 

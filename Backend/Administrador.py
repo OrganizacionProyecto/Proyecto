@@ -41,6 +41,8 @@ class Administrador(Usuario):
             print(f"Error al insertar Administrador en la base de datos: {error}")
 
 
+
+
     def procesarPedidos(self):
         
         pass

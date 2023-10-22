@@ -25,7 +25,7 @@ class Cliente(Usuario):
     def registrarCliente(self, conexion):
         try:
             cursor = conexion.obtener_cursor()
-
+            
             # Define la sentencia SQL para insertar un cliente en la base de datos
             sql = """
             INSERT INTO Cliente (dni, id_usuario)
@@ -69,3 +69,6 @@ class Cliente(Usuario):
 
         except mysql.connector.Error as error:
             print(f"Error al eliminar categoria de la base de datos: {error}")
+
+
+
