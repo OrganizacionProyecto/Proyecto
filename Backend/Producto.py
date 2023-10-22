@@ -12,36 +12,32 @@ class Producto:
 
     def registrarProducto(self, conexion):
         try:
-            cursor = conexion.cursor()  # Obtén un cursor a partir de la conexión
+            cursor = conexion.obtener_cursor()  
 
             # Define la sentencia SQL para insertar un producto en la base de datos
             sql = """
-            INSERT INTO Producto (nombre, descripcion, precio, imagen, stock, categoria_id)
-            VALUES (%s, %s, %s, %s, %s, %s)
+            INSERT INTO Producto (id, nombre, descripcion, precio, imagen, stock, categoria_id)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
             """
 
             # Valores a insertar
-            valores = (self.nombre, self.descripcion, self.precio, self.imagen, self.stock, self.categoria_id)
+            valores = (self.id, self.nombre, self.descripcion, self.precio, self.imagen, self.stock, self.categoria_id)
 
             # Ejecuta la sentencia SQL
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print("Producto insertado en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al insertar producto en la base de datos: {error}")
-
-    import mysql.connector
-
-class Producto:
-    # ... (otros métodos e inicialización)
-
+            
+            
     def actualizarProducto(self, nombre=None, descripcion=None, precio=None, imagen=None, stock=None, categoria_id=None, conexion=None):
         try:
-            cursor = conexion.cursor()
+            cursor = conexion.obtener_cursor()
 
             # Define la sentencia SQL para actualizar un producto en la base de datos
             sql = """
@@ -65,7 +61,7 @@ class Producto:
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print(f"Producto ID {self.id} actualizado en la base de datos")
 
@@ -75,19 +71,19 @@ class Producto:
 
     def eliminarProducto(self,conexion):
         try:
-            cursor = conexion.cursor()
+            cursor = conexion.obtener_cursor()
 
-            # Define la sentencia SQL para eliminar un cliente de la base de datos
+           
             sql = "DELETE FROM Producto WHERE id = %s"
 
-            # Valor a insertar (el ID del producto a eliminar)
+        
             valor = (self.id,)
 
-            # Ejecuta la sentencia SQL
+            
             cursor.execute(sql, valor)
 
-            # Confirma los cambios en la base de datos
-            conexion.commit()
+            
+            conexion.conexion.commit()
 
             print("Producto eliminado de la base de datos")
 

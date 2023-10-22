@@ -64,11 +64,11 @@ class Usuario:
 
     def registrarUsuario(self, conexion):
         try:
-            cursor = conexion.obtener_cursor
+            cursor = conexion.obtener_cursor()
 
             # Define la sentencia SQL para insertar un cliente en la base de datos
             sql = """
-            INSERT INTO Usuario (id,nombre, apellido, correo, contrasenia, domicilio, tipo)
+            INSERT INTO Usuario (id, nombre, apellido, correo, contrasenia, domicilio, tipo)
             VALUES (%s, %s, %s, %s, %s, %s,%s)
             """
 

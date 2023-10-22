@@ -15,7 +15,7 @@ class Administrador(Usuario):
        
     def registrarAdmin(self, conexion):
         try:
-            cursor = conexion.cursor()
+            cursor = conexion.obtener_cursor()
 
             # Define la sentencia SQL para insertar un cliente en la base de datos
             sql = """
@@ -33,7 +33,7 @@ class Administrador(Usuario):
             self.id = cursor.lastrowid
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print("Admiistrador insertado en la base de datos")
 

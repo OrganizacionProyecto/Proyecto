@@ -7,22 +7,21 @@ class Categoria:
 
     def registrarCategoria(self, conexion):
         try:
-            cursor = conexion.cursor()  # Obtén un cursor a partir de la conexión
+            cursor = conexion.obtener_cursor()
 
-            # Define la sentencia SQL para insertar una categoría en la base de datos
             sql = """
-            INSERT INTO Categoria (nombre)
-            VALUES (%s)
+            INSERT INTO Categoria (id, nombre)
+            VALUES (%s, %s)
             """
 
             # Valores a insertar como tupla
-            valores = (self.nombre,)
+            valores = (self.id, self.nombre)
 
             # Ejecuta la sentencia SQL
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print("Categoría insertada en la base de datos")
 
@@ -32,7 +31,7 @@ class Categoria:
     
     def eliminarCategoria(self,conexion):
         try:
-            cursor = conexion.cursor()
+            cursor = conexion.obtener_cursor()
 
             # Define la sentencia SQL para eliminar un cliente de la base de datos
             sql = "DELETE FROM Categoria WHERE id = %s"
@@ -44,7 +43,7 @@ class Categoria:
             cursor.execute(sql, valor)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print("Categoria eliminada de la base de datos")
 
