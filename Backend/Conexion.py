@@ -37,5 +37,6 @@ class Conexion:
             return self.conexion.cursor()
         else:
             print("Error: La conexión a la base de datos no está establecida.")
+
             return None
 
