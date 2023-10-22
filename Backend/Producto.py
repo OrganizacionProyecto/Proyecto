@@ -1,5 +1,4 @@
 import mysql.connector
-from Conexion import Conexion
 
 class Producto:
     def __init__(self, id, nombre, descripcion, precio, imagen, stock, categoria_id):
@@ -10,7 +9,6 @@ class Producto:
         self.imagen = imagen
         self.stock = stock
         self.categoria_id = categoria_id
-
 
     def registrarProducto(self, conexion):
         try:
@@ -25,13 +23,13 @@ class Producto:
             # Valores a insertar
             valores = (self.id, self.nombre, self.descripcion, self.precio, self.imagen, self.stock, self.categoria_id)
 
-                # Ejecuta la sentencia SQL
-                cursor.execute(sql, valores)
+            # Ejecuta la sentencia SQL
+            cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
             conexion.conexion.commit()
 
-                print("Producto insertado en la base de datos")
+            print("Producto insertado en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al insertar producto en la base de datos: {error}")

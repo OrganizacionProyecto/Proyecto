@@ -23,29 +23,31 @@ class Categoria:
             # Confirma los cambios en la base de datos
             conexion.conexion.commit()
 
-            print(f"Categoría '{self.nombre}' insertada en la base de datos")
+            print("Categoría insertada en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al insertar categoría en la base de datos: {error}")
 
-    def eliminarCategoria(self, conexion):
+    def eliminarCategoria(self,conexion):
         try:
             cursor = conexion.obtener_cursor()
 
+            # Define la sentencia SQL para eliminar un cliente de la base de datos
             sql = "DELETE FROM Categoria WHERE id = %s"
 
-            # Valor a insertar (el ID de la categoría a eliminar)
-            valor = (categoria_id,)
+            # Valor a insertar (el ID del cliente a eliminar)
+            valor = (self.id,)
 
+            # Ejecuta la sentencia SQL
             cursor.execute(sql, valor)
 
             # Confirma los cambios en la base de datos
             conexion.conexion.commit()
 
-            print(f"Categoría con ID {categoria_id} eliminada de la base de datos")
+            print("Categoria eliminada de la base de datos")
 
         except mysql.connector.Error as error:
-            print(f"Error al eliminar categoría de la base de datos: {error}")
+            print(f"Error al eliminar categoria de la base de datos: {error}")
 
     def actualizarCategoria(self, conexion):
         try:
@@ -104,13 +106,3 @@ class Categoria:
         else:
             print("No hay categorías en la base de datos")
 
-            if opcion == "1":
-                self.registrarCategoria(conexion)
-            elif opcion == "2":
-                self.actualizarCategoria(conexion)
-            elif opcion == "3":
-                self.eliminarCategoria(conexion)
-            elif opcion == "4":
-                self.mostrar_todas_las_categorias(conexion)
-            elif opcion == "5":
-                break"""

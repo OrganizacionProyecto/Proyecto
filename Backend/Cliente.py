@@ -44,10 +44,10 @@ class Cliente(Usuario):
             # Confirma los cambios en la base de datos
             conexion.conexion.commit()
 
-            print("Producto insertado en la base de datos")
+            print("Cliente insertado en la base de datos")
 
         except mysql.connector.Error as error:
-            print(f"Error al insertar producto en la base de datos: {error}")
+            print(f"Error al insertar cliente en la base de datos: {error}")
 
     def eliminarCliente(self,conexion):
         try:
