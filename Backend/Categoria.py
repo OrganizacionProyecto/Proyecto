@@ -10,16 +10,13 @@ class Categoria:
         try:
             cursor = conexion.obtener_cursor()
 
-            # Solicitar al usuario el nombre de la nueva categoría
-            
-
             sql = """
-            INSERT INTO Categoria (nombre)
-            VALUES (%s)
+            INSERT INTO Categoria (id, nombre)
+            VALUES (%s, %s)
             """
 
             # Valores a insertar como tupla
-            valores = (self.nombre,)
+            valores = (self.id, self.nombre)
 
             cursor.execute(sql, valores)
 
@@ -34,9 +31,6 @@ class Categoria:
     def eliminarCategoria(self, conexion):
         try:
             cursor = conexion.obtener_cursor()
-
-            # Solicitar al usuario el ID de la categoría a eliminar
-            categoria_id = input("Ingrese el ID de la categoría que desea eliminar: ")
 
             sql = "DELETE FROM Categoria WHERE id = %s"
 
@@ -67,6 +61,8 @@ class Categoria:
             if not categoria:
                 print(f"No se encontró ninguna categoría con el ID {categoria_id}.")
                 return
+
+            nuevo_nombre = input(f"Ingrese el nuevo nombre para la categoría (actual '{categoria[1]}'): ")
 
             if not nuevo_nombre:
                 nuevo_nombre = categoria[1]
@@ -107,24 +103,6 @@ class Categoria:
                 categoria.mostrarCategoria()
         else:
             print("No hay categorías en la base de datos")
-
-        if categorias:
-            for categoria_data in categorias:
-                categoria = Categoria(*categoria_data)
-                categoria.mostrarCategoria()
-        else:
-            print("No hay categorías en la base de datos")
-
-    def menu_categorias(self, conexion):
-        pass
-        """while True:
-            print("\nGestionar Categorías:")
-            print("1. Registrar Categoría")
-            print("2. Actualizar Categoría")
-            print("3. Eliminar Categoría")
-            print("4. Mostrar Todas las Categorías")
-            print("5. Volver al Menú Principal")
-            opcion = input("Seleccione una opción: ")
 
             if opcion == "1":
                 self.registrarCategoria(conexion)

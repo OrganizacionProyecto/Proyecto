@@ -42,3 +42,21 @@ class Administrador(Usuario):
 
 
 
+
+    def procesarPedidos(self):
+        
+        pass
+
+    def gestionarProductos(self):
+        
+        pass
+
+    def gestionarCategorias(self):
+        
+        pass
+
+
+    def tipoUsuario(self):
+        
+        pass
+

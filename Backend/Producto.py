@@ -14,27 +14,29 @@ class Producto:
 
     def registrarProducto(self, conexion):
         try:
-                cursor = conexion.obtener_cursor()
+            cursor = conexion.obtener_cursor()  
 
-                sql = """
-                INSERT INTO Producto (nombre, descripcion, precio, imagen, stock, categoria_id)
-                VALUES (%s, %s, %s, %s, %s, %s)
-                """
+            # Define la sentencia SQL para insertar un producto en la base de datos
+            sql = """
+            INSERT INTO Producto (id, nombre, descripcion, precio, imagen, stock, categoria_id)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """
 
-                # Valores a insertar
-                valores = (self.nombre, self.descripcion, self.precio, self.imagen, self.stock, self.categoria_id)
+            # Valores a insertar
+            valores = (self.id, self.nombre, self.descripcion, self.precio, self.imagen, self.stock, self.categoria_id)
 
                 # Ejecuta la sentencia SQL
                 cursor.execute(sql, valores)
 
-                # Confirma los cambios en la base de datos
-                conexion.conexion.commit()
+            # Confirma los cambios en la base de datos
+            conexion.conexion.commit()
 
                 print("Producto insertado en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al insertar producto en la base de datos: {error}")
-
+            
+            
     def actualizarProducto(self, conexion):
         try:
             cursor = conexion.obtener_cursor()
@@ -112,7 +114,6 @@ class Producto:
             try:
                 cursor = conexion.obtener_cursor()
 
-
                 # Primero, verifica si el producto está asociado a algún pedido
                 sql_check_pedido = "SELECT COUNT(*) FROM Pedido_Producto WHERE producto_id = %s"
                 cursor.execute(sql_check_pedido, (self.id,))
@@ -140,7 +141,7 @@ class Producto:
         print(f"Imagen: {self.imagen}")
         print(f"Stock: {self.stock}")
         print(f"Categoría ID: {self.categoria_id}")
-    
+
     def mostrarTodosLosProductos(self, conexion):
             try:
                 cursor = conexion.obtener_cursor()
@@ -158,7 +159,7 @@ class Producto:
                         producto_obj = Producto(*producto)
                         producto_obj.mostrarProducto()
                         print("\n")
-                        
+
             except mysql.connector.Error as error:
                 print(f"Error al obtener la lista de productos: {error}")
 

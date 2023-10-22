@@ -5,6 +5,7 @@ class Pedido:
     def __init__(self, id, id_usuario, estado):
         self.id = id
         self.id_usuario = id_usuario
+        self.estado = estado
         self.productos = []  # Lista para almacenar los productos en el pedido
 
     def agregarProducto(self, producto):
@@ -12,7 +13,6 @@ class Pedido:
         self.productos.append(producto)
 
     def mostrarPedido(self):
-
         print(f"Pedido #{self.id}")
         print(f"Usuario: {self.id_usuario}")
         print(f"Estado: {self.estado}")
@@ -29,7 +29,7 @@ class Pedido:
 
     def registrarPedido(self, conexion):
         try:
-            cursor = conexion.cursor()
+            cursor = conexion.obtener_cursor()
 
             # Define la sentencia SQL para insertar un pedido en la base de datos
             sql = """
@@ -47,7 +47,7 @@ class Pedido:
             self.id = cursor.lastrowid
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             # Agregar relaciones entre pedido y productos en la tabla Pedido_Producto
             for producto in self.productos:
@@ -57,7 +57,7 @@ class Pedido:
                 """
                 valores_relacion = (self.id, producto.id)
                 cursor.execute(sql_relacion, valores_relacion)
-                conexion.commit()
+                conexion.conexion.commit()
 
             print(f"Pedido #{self.id} insertado en la base de datos")
 
@@ -68,13 +68,8 @@ class Pedido:
         try:
             cursor = conexion.obtener_cursor()
             sql = "DELETE FROM Pedido WHERE id = %s"
-
-            # Valor a insertar (el ID del pedido a eliminar)
             valor = (self.id,)
-
-            # Ejecuta la sentencia SQL
             cursor.execute(sql, valor)
-
             conexion.conexion.commit()
 
             print("Pedido eliminado de la base de datos")
