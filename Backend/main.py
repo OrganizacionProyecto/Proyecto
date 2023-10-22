@@ -43,9 +43,9 @@ def main():
                 if opcion == "1":
                     nombre = input("Ingrese su nombre: ")
                     apellido = input("Ingrese su apellido: ")
-                    correo = input("Ingrese su correo: ")  # Convierte la entrada a un valor numérico
+                    correo = input("Ingrese su correo: ")  
                     dni = input("Ingrese su DNI: ")
-                    contrasenia = input("Ingrese su contraseña: ")  # Convierte la entrada a un valor numérico
+                    contrasenia = input("Ingrese su contraseña: ")  
                     domicilio = input("Ingrese su domicilio: ")
                     cliente = Cliente(id, nombre, apellido, correo, dni, contrasenia, domicilio)
            
@@ -106,8 +106,8 @@ def main():
                         descripcion = input("Ingrese descripción: ")
                         precio = input("Ingrese un precio: ")
                         imagen = input("imagen: ")
-                        stock = input("Nuevo stock (deje en blanco para mantener el valor actual): ")
-                        #categoria_id = input("Nuevo ID de categoría (deje en blanco para mantener el valor actual): ")
+                        stock = input("Ingrese stock: ")
+                        categoria_id = input("ID de categoría ")
                         producto = Producto(id, nombre, descripcion, precio, imagen, stock, categoria_id=None)
                         producto.registrarProducto(conection)
                     elif opcion == "2":
