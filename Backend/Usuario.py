@@ -64,7 +64,7 @@ class Usuario:
 
     def registrarUsuario(self, conexion):
         try:
-            cursor = conexion.obtener_cursor()
+            cursor = conexion.obtener_cursor
 
             # Define la sentencia SQL para insertar un cliente en la base de datos
             sql = """
