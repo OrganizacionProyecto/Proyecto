@@ -14,11 +14,16 @@ class Cliente:
     def registrarCliente(self, conexion):
         try:
             cursor = conexion.obtener_cursor()
+<<<<<<< Updated upstream
 
             # Solicitar al usuario los datos del producto
             # Convierte la entrada a un valor numérico
 
             # Define la sentencia SQL para insertar un nuevo producto
+=======
+            
+            # Define la sentencia SQL para insertar un cliente en la base de datos
+>>>>>>> Stashed changes
             sql = """
             INSERT INTO cliente (nombre, apellido, correo, dni, contrasenia, domicilio)
             VALUES (%s, %s, %s, %s, %s, %s)
@@ -91,6 +96,7 @@ class Cliente:
             print("Cliente eliminado de la base de datos")
 
         except mysql.connector.Error as error:
+<<<<<<< Updated upstream
             print(f"Error al eliminar cliente de la base de datos: {error}")
 
     def mostrarCliente(self):
@@ -127,3 +133,9 @@ class Cliente:
             print("El correo ingresado no corresponde a un cliente registrado.")
 
     
+=======
+            print(f"Error al eliminar categoria de la base de datos: {error}")
+
+
+
+>>>>>>> Stashed changes
