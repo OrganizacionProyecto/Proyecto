@@ -68,12 +68,6 @@ class Categoria:
                 print(f"No se encontró ninguna categoría con el ID {categoria_id}.")
                 return
 
-<<<<<<< Updated upstream
-            nuevo_nombre = input(f"Ingrese el nuevo nombre para la categoría (deje en blanco para mantener '{categoria[1]}'): ")
-=======
-            nuevo_nombre = input(f"Ingrese el nuevo nombre para la categoría (actual '{categoria[1]}'): ")
->>>>>>> Stashed changes
-
             if not nuevo_nombre:
                 nuevo_nombre = categoria[1]
 
@@ -89,11 +83,7 @@ class Categoria:
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-<<<<<<< Updated upstream
-            conexion.conexion.commit()
-=======
             conexion.conexion.commit()  # Aquí debes usar "conexion.conexion" en lugar de "conexion"
->>>>>>> Stashed changes
 
             print(f"Categoría con ID {categoria_id} actualizada en la base de datos")
 
@@ -111,20 +101,12 @@ class Categoria:
         cursor.execute(sql)
         categorias = cursor.fetchall()
 
-<<<<<<< Updated upstream
-    def mostrar_todas_las_categorias(self, conexion):
-        cursor = conexion.obtener_cursor()
-        sql = "SELECT * FROM Categoria"
-        cursor.execute(sql)
-        categorias = cursor.fetchall()
-=======
         if categorias:
             for categoria_data in categorias:
                 categoria = Categoria(*categoria_data)
                 categoria.mostrarCategoria()
         else:
             print("No hay categorías en la base de datos")
->>>>>>> Stashed changes
 
         if categorias:
             for categoria_data in categorias:

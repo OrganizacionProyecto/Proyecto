@@ -34,12 +34,7 @@ class Producto:
 
         except mysql.connector.Error as error:
             print(f"Error al insertar producto en la base de datos: {error}")
-<<<<<<< Updated upstream
 
-=======
-            
-            
->>>>>>> Stashed changes
     def actualizarProducto(self, conexion):
         try:
             cursor = conexion.obtener_cursor()
@@ -51,10 +46,6 @@ class Producto:
             cursor.execute("SELECT id FROM Producto WHERE id = %s", (producto_id,))
             producto = cursor.fetchone()
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
             if not producto:
                 print(f"No se encontró ningún producto con el ID {producto_id}.")
                 return
@@ -67,19 +58,11 @@ class Producto:
             """
 
             # Solicitar al usuario los nuevos valores
-<<<<<<< Updated upstream
-            nombre = input("Nuevo nombre (deje en blanco para mantener el valor actual): ")
-            descripcion = input("Nueva descripción (deje en blanco para mantener el valor actual): ")
-            precio = input("Nuevo precio (deje en blanco para mantener el valor actual): ")
-            imagen = input("Nueva imagen (deje en blanco para mantener el valor actual): ")
-            stock = input("Nuevo stock (deje en blanco para mantener el valor actual): ")
-=======
             nombre = input("Nuevo nombre: ")
             descripcion = input("Nueva descripción: ")
             precio = input("Nuevo precio: ")
             imagen = input("Nueva imagen (deje en blanco para mantener el valor actual): ")
             stock = input("Nuevo stock: ")
->>>>>>> Stashed changes
             categoria_id = input("Nuevo ID de categoría (deje en blanco para mantener el valor actual): ")
 
             # Valores a actualizar
@@ -104,38 +87,6 @@ class Producto:
         except mysql.connector.Error as error:
             print(f"Error al actualizar producto en la base de datos: {error}")
 
-<<<<<<< Updated upstream
-
-
-    def eliminarProducto(self, conexion):
-        try:
-            cursor = conexion.obtener_cursor()
-
-            # Solicitar al usuario el ID del producto a eliminar
-            producto_id = input("Ingrese el ID del producto que desea eliminar: ")
-
-            # Verificar si el producto con el ID proporcionado existe en la base de datos
-            cursor.execute("SELECT id FROM Producto WHERE id = %s", (producto_id,))
-            producto = cursor.fetchone()
-
-            if not producto:
-                print(f"No se encontró ningún producto con el ID {producto_id}.")
-                return
-
-            # Define la sentencia SQL para eliminar un producto de la base de datos
-            sql = "DELETE FROM Producto WHERE id = %s"
-
-            # Valor a insertar (el ID del producto a eliminar)
-            valor = (producto_id,)
-
-            # Ejecuta la sentencia SQL
-            cursor.execute(sql, valor)
-
-            # Confirma los cambios en la base de datos
-            conexion.conexion.commit()
-
-            print(f"Producto con ID {producto_id} eliminado de la base de datos")
-=======
     def eliminarUsuario(self, conexion):
         try:
             cursor = conexion.obtener_cursor()
@@ -155,16 +106,13 @@ class Producto:
                 conexion.conexion.commit()
 
                 print("Usuario eliminado de la base de datos")
->>>>>>> Stashed changes
 
         except mysql.connector.Error as error:
             print(f"Error al eliminar usuario de la base de datos: {error}")
             try:
                 cursor = conexion.obtener_cursor()
 
-<<<<<<< Updated upstream
 
-=======
                 # Primero, verifica si el producto está asociado a algún pedido
                 sql_check_pedido = "SELECT COUNT(*) FROM Pedido_Producto WHERE producto_id = %s"
                 cursor.execute(sql_check_pedido, (self.id,))
@@ -183,7 +131,6 @@ class Producto:
 
             except mysql.connector.Error as error:
                 print(f"Error al eliminar producto de la base de datos: {error}")
->>>>>>> Stashed changes
     def mostrarProducto(self):
         # Muestra la información del producto.
         print(f"ID: {self.id}")
@@ -194,53 +141,6 @@ class Producto:
         print(f"Stock: {self.stock}")
         print(f"Categoría ID: {self.categoria_id}")
     
-    def mostrarTodosLosProductos(self, conexion):
-        try:
-            cursor = conexion.obtener_cursor()
-
-<<<<<<< Updated upstream
-            # Define la sentencia SQL para seleccionar todos los productos
-            sql = "SELECT * FROM Producto"
-            cursor.execute(sql)
-            productos = cursor.fetchall()
-
-            if not productos:
-                print("No hay productos en la base de datos.")
-            else:
-                print("Lista de Productos:")
-                for producto in productos:
-                    producto_obj = Producto(*producto)
-                    producto_obj.mostrarProducto()
-                    print("\n")
-
-        except mysql.connector.Error as error:
-            print(f"Error al obtener la lista de productos: {error}")
-
-    def menu_producto(self, conexion):
-        pass
-        """while True:
-            print("Menu de Productos:")
-            print("1. Registrar Producto")
-            print("2. Actualizar Producto")
-            print("3. Eliminar Producto")
-            print("4. Mostrar Todos los Productos")
-            print("5. Volver al Menú Principal")
-            
-            opcion = input("Seleccione una opción: ")
-            
-            if opcion == "1":
-                self.registrarProducto(conexion)
-            elif opcion == "2":
-                self.actualizarProducto(conexion=conexion)
-            elif opcion == "3":
-                self.eliminarProducto(conexion)
-            elif opcion == "4":
-                self.mostrarTodosLosProductos(conexion)
-            elif opcion == "5":
-                break
-            else:
-                print("Opción no válida. Por favor, seleccione una opción válida.")"""
-=======
     def mostrarTodosLosProductos(self, conexion):
             try:
                 cursor = conexion.obtener_cursor()
@@ -258,8 +158,7 @@ class Producto:
                         producto_obj = Producto(*producto)
                         producto_obj.mostrarProducto()
                         print("\n")
->>>>>>> Stashed changes
-
+                        
             except mysql.connector.Error as error:
                 print(f"Error al obtener la lista de productos: {error}")
 

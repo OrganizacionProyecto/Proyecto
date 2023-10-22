@@ -6,20 +6,13 @@ class Pedido:
         self.id = id
         self.id_usuario = id_usuario
         self.productos = []  # Lista para almacenar los productos en el pedido
-<<<<<<< Updated upstream
-        self.estado = estado
-=======
->>>>>>> Stashed changes
 
     def agregarProducto(self, producto):
         # Agrega un producto al pedido
         self.productos.append(producto)
 
     def mostrarPedido(self):
-<<<<<<< Updated upstream
-        # Muestra los detalles del pedido, incluyendo los productos y el estado.
-=======
->>>>>>> Stashed changes
+
         print(f"Pedido #{self.id}")
         print(f"Usuario: {self.id_usuario}")
         print(f"Estado: {self.estado}")
@@ -28,19 +21,10 @@ class Pedido:
             print(f"  - {producto.nombre}")
 
     def procesarPedido(self):
-<<<<<<< Updated upstream
-        # Implementa la lógica para procesar el pedido.
-        # Esto podría implicar cambiar el estado del pedido y realizar otras acciones necesarias.
-=======
->>>>>>> Stashed changes
         self.estado = "Procesado"
         print(f"El pedido #{self.id} ha sido procesado.")
 
     def enviarMail(self):
-<<<<<<< Updated upstream
-        # Implementa la lógica para enviar un correo relacionado con el pedido.
-=======
->>>>>>> Stashed changes
         print(f"Se ha enviado un correo sobre el pedido #{self.id} al usuario.")
 
     def registrarPedido(self, conexion):
@@ -82,13 +66,7 @@ class Pedido:
 
     def eliminarPedido(self, conexion):
         try:
-<<<<<<< Updated upstream
-            cursor = conexion.cursor()
-
-            # Define la sentencia SQL para eliminar un cliente de la base de datos
-=======
             cursor = conexion.obtener_cursor()
->>>>>>> Stashed changes
             sql = "DELETE FROM Pedido WHERE id = %s"
 
             # Valor a insertar (el ID del pedido a eliminar)
@@ -96,13 +74,8 @@ class Pedido:
 
             # Ejecuta la sentencia SQL
             cursor.execute(sql, valor)
-<<<<<<< Updated upstream
 
-            # Confirma los cambios en la base de datos
-            conexion.commit()
-=======
             conexion.conexion.commit()
->>>>>>> Stashed changes
 
             print("Pedido eliminado de la base de datos")
 

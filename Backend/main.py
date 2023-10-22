@@ -3,6 +3,8 @@ from Producto import Producto
 from Pedido import Pedido
 from Categoria import Categoria
 from Conexion import Conexion
+from Usuario import Usuario
+from Administrador import Administrador
 
 def mostrar_menu():
     print("Menu Principal:")
@@ -10,30 +12,22 @@ def mostrar_menu():
     print("2. Gestionar Categorias")
     print("3. Gestionar Productos")
     print("4. Gestionar Pedidos")
-<<<<<<< Updated upstream
-    print("5. Salir del programa")
-=======
     print("5. Gestionar Usuarios")
     print("6. Gestionar Administradores")
     print("7. Salir del programa")
->>>>>>> Stashed changes
 
 def main():
     # Configurar los datos de conexión a la base de datos
     host = "localhost"
     usuario = "root"
-<<<<<<< Updated upstream
     contrasenia = "root"
-=======
-    contrasenia = ""
->>>>>>> Stashed changes
     base_datos = "aymara"
 
     # Crear una instancia de la clase Conexion
-    conection = Conexion(host, usuario, contrasenia, base_datos)
+    conexion = Conexion(host, usuario, contrasenia, base_datos)
 
     # Conectar a la base de datos
-    conection.conectar()
+    conexion.conectar()
     while True:
         mostrar_menu()
         op = input("Seleccione una opcion: ")
@@ -46,27 +40,9 @@ def main():
                 opcion = input("Seleccione una opción: ")
 
                 if opcion == "1":
+                    id = None
                     nombre = input("Ingrese su nombre: ")
                     apellido = input("Ingrese su apellido: ")
-<<<<<<< Updated upstream
-                    correo = input("Ingrese su correo: ")  # Convierte la entrada a un valor numérico
-                    dni = input("Ingrese su DNI: ")
-                    contrasenia = input("Ingrese su contraseña: ")  # Convierte la entrada a un valor numérico
-                    domicilio = input("Ingrese su domicilio: ")
-                    cliente = Cliente(id, nombre, apellido, correo, dni, contrasenia, domicilio)
-           
-                    cliente.registrarCliente(conection)
-                elif opcion == "2":
-                   cliente = Cliente(id=None, nombre=None, apellido=None, correo=None, dni=None, contrasenia=None, domicilio=None)
-                   cliente.iniciarSesion(conection, contrasenia=None)
-                elif opcion == "3":
-                    cliente = Cliente(id=None, nombre=None, apellido=None, correo=None, dni=None, contrasenia=None, domicilio=None)
-                    cliente.eliminarCliente(conection)
-                elif opcion == "4":
-                    cliente = Cliente(id=None, nombre=None, apellido=None, correo=None, dni=None, contrasenia=None, domicilio=None)
-                    cliente.actualizarCliente(conection)
-                elif opcion == "5":
-=======
                     correo = input("Ingrese su correo: ")  
                     contrasenia = input("Ingrese su contraseña: ")  
                     domicilio = input("Ingrese su domicilio: ")
@@ -84,7 +60,6 @@ def main():
                     cliente.eliminarCliente(conexion)
 
                 elif opcion == "3":
->>>>>>> Stashed changes
                     break
             
         if op == "2":
@@ -98,18 +73,20 @@ def main():
                 opcion = input("Seleccione una opción: ")
 
                 if opcion == "1":
+                    id = input("Ingrese un numero de categoria: ")
                     nombre = input("Ingrese un nombre: ")
                     categoria = Categoria(id, nombre)
-                    categoria.registrarCategoria(conection)
+                    categoria.registrarCategoria(conexion)
                 elif opcion == "2":
                     categoria = Categoria(id=None, nombre=None)
-                    categoria.actualizarCategoria(conection)
+                    categoria.actualizarCategoria(conexion)
                 elif opcion == "3":
-                    categoria = Categoria(id=None, nombre=None)
-                    categoria.eliminarCategoria(conection)
+                    id = input("Ingrese un numero de categoria: ")
+                    categoria = Categoria(id, nombre=None)
+                    categoria.eliminarCategoria(conexion)
                 elif opcion == "4":
                     categoria = Categoria(id=None, nombre=None)
-                    categoria.mostrar_todas_las_categorias(conection)
+                    categoria.mostrar_todas_las_categorias(conexion)
                 elif opcion == "5":
                     break
             
@@ -128,35 +105,31 @@ def main():
                     opcion = input("Seleccione una opción: ")
                 
                     if opcion == "1":
+                        id = None
                         nombre = input("Ingrese un nombre: ")
                         descripcion = input("Ingrese descripción: ")
                         precio = input("Ingrese un precio: ")
                         imagen = input("imagen: ")
                         stock = input("Nuevo stock (deje en blanco para mantener el valor actual): ")
-                        #categoria_id = input("Nuevo ID de categoría (deje en blanco para mantener el valor actual): ")
-                        producto = Producto(id, nombre, descripcion, precio, imagen, stock, categoria_id=None)
-                        producto.registrarProducto(conection)
+                        categoria_id = input("Nuevo ID de categoría (deje en blanco para mantener el valor actual): ")
+                        producto = Producto(id, nombre, descripcion, precio, imagen, stock, categoria_id)
+                        producto.registrarProducto(conexion)
                     elif opcion == "2":
                         producto = Producto(id=None, nombre=None, descripcion=None, precio=None, imagen=None, stock=None, categoria_id=None)
-                        producto.actualizarProducto(conection)
+                        producto.actualizarProducto(conexion)
                     elif opcion == "3":
-                        producto = Producto(id=None, nombre=None, descripcion=None, precio=None, imagen=None, stock=None, categoria_id=None)
-                        producto.eliminarProducto(conection)
+                        id = input("Ingrese un numero de Producto: ")
+                        producto = Producto(id, nombre=None, descripcion=None, precio=None, imagen=None, stock=None, categoria_id=None)
+                        producto.eliminarProducto(conexion)
                     elif opcion == "4":
                         producto = Producto(id=None, nombre=None, descripcion=None, precio=None, imagen=None, stock=None, categoria_id=None)
-                        producto.mostrarTodosLosProductos(conection)
+                        producto.mostrarTodosLosProductos(conexion)
                     elif opcion == "5":
                         break
                     else:
                         print("Opción no válida. Por favor, seleccione una opción válida.")
             
         if op == "4":
-<<<<<<< Updated upstream
-            """Gestionar Pedidos"""
-            print("Seccion en trabajo, se realizara el cuatrimestre que sigue")
-            return
-        if op == "5":
-=======
             while True:
                 print("\nGestionar Pedidos:")
                 print("1. Registrar Pedido")
@@ -266,12 +239,11 @@ def main():
                     break
 
         if op == "7":
->>>>>>> Stashed changes
             break
-        if op != "1" and "2" and "3" and "4" and "5":
+        if op != "1" and "2" and "3" and "4" and "5" and "6" and "7":
             print("Opcion no valida, ingrese una que sea valida")
 
-    conection.cerrar() 
+    conexion.cerrar() 
 
 if __name__ == "__main__":
     main()
