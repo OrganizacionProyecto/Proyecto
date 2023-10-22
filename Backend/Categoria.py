@@ -31,9 +31,9 @@ class Categoria:
         except mysql.connector.Error as error:
             print(f"Error al insertar categoría en la base de datos: {error}")
 
-    def eliminarCategoria(self, conection):
+    def eliminarCategoria(self, conexion):
         try:
-            cursor = conection.obtener_cursor()
+            cursor = conexion.obtener_cursor()
 
             # Solicitar al usuario el ID de la categoría a eliminar
             categoria_id = input("Ingrese el ID de la categoría que desea eliminar: ")
@@ -46,7 +46,7 @@ class Categoria:
             cursor.execute(sql, valor)
 
             # Confirma los cambios en la base de datos
-            conection.commit()
+            conexion.conexion.commit()
 
             print(f"Categoría con ID {categoria_id} eliminada de la base de datos")
 
@@ -85,7 +85,7 @@ class Categoria:
             cursor.execute(sql, valores)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print(f"Categoría con ID {categoria_id} actualizada en la base de datos")
 

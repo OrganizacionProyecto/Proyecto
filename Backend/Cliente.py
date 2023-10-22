@@ -72,7 +72,9 @@ class Cliente:
 
     def eliminarCliente(self, conexion):
         try:
-            cursor = conexion.cursor()
+            cursor = conexion.obtener_cursor()
+            
+            cliente_id = input("Ingrese el ID del producto que desea eliminar: ")
 
             # Define la sentencia SQL para eliminar un cliente de la base de datos
             sql = "DELETE FROM Cliente WHERE id = %s"
@@ -84,7 +86,7 @@ class Cliente:
             cursor.execute(sql, valor)
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print("Cliente eliminado de la base de datos")
 
@@ -104,11 +106,24 @@ class Cliente:
         # Implementa la lógica para que el cliente cambie su contraseña.
         self.contrasenia = nueva_contrasenia
 
-    def iniciarSesion(self, correo, contrasenia):
-        # Implementación para iniciar sesión de un cliente
-        if self.correo == correo and self.contrasenia == contrasenia:
-            return True
+    def iniciarSesion(self, correo, contrasenia, conexion):
+        correo_ingresado = input("Ingrese su correo: ")
+        contrasenia_ingresada = input("Ingrese su contraseña: ")
+
+        cursor = conexion.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM cliente WHERE correo = %s", (correo_ingresado,))
+        cliente_data = cursor.fetchone()
+        cursor.close()
+
+        if cliente_data is not None:
+            cliente = Cliente(cliente_data["id"], cliente_data["nombre"], cliente_data["apellido"], cliente_data["correo"],
+                            cliente_data["dni"], cliente_data["contrasenia"], cliente_data["domicilio"])
+
+            if cliente.iniciarSesion(correo_ingresado, contrasenia_ingresada):
+                print("Inicio de sesión exitoso. ¡Bienvenido, " + cliente.mostrarCliente() + "!")
+            else:
+                print("Inicio de sesión fallido. Verifique su correo y contraseña.")
         else:
-            return False
+            print("El correo ingresado no corresponde a un cliente registrado.")
 
     

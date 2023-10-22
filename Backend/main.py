@@ -49,7 +49,7 @@ def main():
                     cliente.registrarCliente(conection)
                 elif opcion == "2":
                    cliente = Cliente(id=None, nombre=None, apellido=None, correo=None, dni=None, contrasenia=None, domicilio=None)
-                   cliente.iniciar_sesion(conection)
+                   cliente.iniciarSesion(conection, contrasenia=None)
                 elif opcion == "3":
                     cliente = Cliente(id=None, nombre=None, apellido=None, correo=None, dni=None, contrasenia=None, domicilio=None)
                     cliente.eliminarCliente(conection)
