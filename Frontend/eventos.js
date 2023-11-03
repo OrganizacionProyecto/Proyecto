@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (usuarioCorrecto) {
         alert('Inicio de sesión exitoso');
       } else {
-        alert('El nombre de usuario y/o la contraseña no son correctos.');
+        alert("El nombre de usuario y/o la contraseña no son correctos.");
       }
     });
   }
