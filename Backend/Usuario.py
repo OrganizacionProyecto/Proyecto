@@ -3,8 +3,8 @@ import mysql.connector
 
 class Usuario:
         
-    def __init__(self, nombre, apellido, correo, contrasenia, domicilio, tipo):
-        self.id = None
+    def __init__(self, id, nombre, apellido, correo, contrasenia, domicilio, tipo):
+        self.id = id
         self.nombre = nombre
         self.apellido = apellido
         self.correo = correo
@@ -130,12 +130,12 @@ class Usuario:
 
             # Define la sentencia SQL para insertar un cliente en la base de datos
             sql = """
-            INSERT INTO Usuario (nombre, apellido, correo, contrasenia, domicilio, tipo)
-            VALUES (%s, %s, %s, %s, %s,%s)
+            INSERT INTO Usuario (id, nombre, apellido, correo, contrasenia, domicilio, tipo)
+            VALUES (%s, %s, %s, %s, %s, %s,%s)
             """
 
             # Valores a insertar
-            valores = (self.nombre, self.apellido, self.correo, self.contrasenia, self.domicilio, self.tipo)
+            valores = (self.id, self.nombre, self.apellido, self.correo, self.contrasenia, self.domicilio, self.tipo)
 
             # Ejecuta la sentencia SQL
             cursor.execute(sql, valores)
@@ -200,37 +200,24 @@ class Usuario:
             
     def eliminarUsuario(self, conexion, id):
         
-        cursor = conexion.obtener_cursor()
-
         try:
+            cursor = conexion.obtener_cursor()
+            # Define la sentencia SQL para eliminar un cliente de la base de datos
+            sql = "DELETE FROM Usuario WHERE id = %s"
 
-            # Eliminar los productos relacionados al pedido
-            consulta_eliminar_productos = "DELETE FROM pedido_producto WHERE pedido_id = %s;"
-            # Ejecuta la sentencia SQL
-            cursor.execute(consulta_eliminar_productos, (id,))
-            # Confirma los cambios en la base de datos        
+            # Valor a insertar (el ID del usuario a eliminar)
+            valor = (id,)
 
-            # Eliminar los pedidos relacionados del usuario
-            consulta_eliminar_pedidos = "DELETE FROM pedido WHERE id_usuario = %s;"
             # Ejecuta la sentencia SQL
-            cursor.execute(consulta_eliminar_pedidos, (id,))
-            # Confirma los cambios en la base de datos
-                       
-            # Define la sentencia SQL para eliminar un usuario de la base de datos
-            sql = "DELETE FROM Usuario WHERE id = %s"     
-            # Ejecuta la sentencia SQL
-            cursor.execute(sql, (id,))
+            cursor.execute(sql, valor)
 
             # Confirma los cambios en la base de datos
             conexion.conexion.commit()
 
-            print("Usuario eliminado de la base de datos")
+            print("Eliminado de la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al eliminar de la base de datos: {error}")
-
-        finally:
-            cursor.close()
 
     def mostrarTodosLosUsuarios(self, conexion):
             try:
