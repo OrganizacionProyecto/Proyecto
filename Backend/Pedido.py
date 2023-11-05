@@ -167,22 +167,9 @@ class Pedido:
     def eliminarPedido(self, conexion):
         try:
             cursor = conexion.obtener_cursor()
-
-            # Obtén todos los registros de Pedido_Producto relacionados con el pedido
-            sql_obtener_relaciones = "SELECT id FROM Pedido_Producto WHERE pedido_id = %s"
-            cursor.execute(sql_obtener_relaciones, (self.id,))
-            relaciones = cursor.fetchall()
-
-            # Elimina los registros relacionados en Pedido_Producto
-            for relacion in relaciones:
-                sql_eliminar_relacion = "DELETE FROM Pedido_Producto WHERE id = %s"
-                cursor.execute(sql_eliminar_relacion, (relacion[0],))
-
-            # Ahora puedes eliminar el pedido
-            sql_eliminar_pedido = "DELETE FROM Pedido WHERE id = %s"
-            cursor.execute(sql_eliminar_pedido, (self.id,))
-
-            # Confirma los cambios en la base de datos
+            sql = "DELETE FROM Pedido WHERE id = %s"
+            valor = (self.id,)
+            cursor.execute(sql, valor)
             conexion.conexion.commit()
 
             print("Pedido y registros relacionados eliminados de la base de datos")
@@ -195,19 +182,24 @@ class Pedido:
         try:
             cursor = conexion.obtener_cursor()
 
-            # Consultar si el usuario existe en la tabla de usuarios
-            consulta = "SELECT * FROM usuarios WHERE nombre = ?;"
-            cursor.execute(consulta, (self.usuario,))
-            resultado = cursor.fetchone()
+            sql = """
+            SELECT Producto.* FROM Producto
+            JOIN Pedido_Producto ON Producto.id = Pedido_Producto.producto_id
+            WHERE Pedido_Producto.pedido_id = %s
+            """
+            cursor.execute(sql, (self.id,))
+            productos_data = cursor.fetchall()
 
-            # Cerrar la conexión a la base de datos
-            cursor.close()
+            productos = []
+            for producto_data in productos_data:
+                producto = Producto(*producto_data)
+                productos.append(producto)
 
-            return resultado
+            return productos
 
         except mysql.connector.Error as error:
             print(f"Error al obtener productos del pedido: {error}")
-            return None
+            return []
 
     def mostrarTodosLosPedidos(self, conexion):
         try:
