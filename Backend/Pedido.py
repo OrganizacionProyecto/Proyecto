@@ -1,18 +1,20 @@
 import mysql.connector
+from Producto import Producto
 
 class Pedido:
     def __init__(self, id, id_usuario, estado):
         self.id = id
         self.id_usuario = id_usuario
-        self.productos = []  # Lista para almacenar los productos en el pedido
         self.estado = estado
+        self.productos = []  # Lista para almacenar los productos en el pedido
 
-    def agregarProducto(self, productos):
+    def agregarProducto(self, producto):
         # Agrega un producto al pedido
-        self.productos.append(productos)
+        self.productos.append(producto)
+
+
 
     def mostrarPedido(self):
-        # Muestra los detalles del pedido, incluyendo los productos y el estado.
         print(f"Pedido #{self.id}")
         print(f"Usuario: {self.id_usuario}")
         print(f"Estado: {self.estado}")
@@ -20,19 +22,53 @@ class Pedido:
         for producto in self.productos:
             print(f"  - {producto.nombre}")
 
-    def procesarPedido(self):
-        # Implementa la lógica para procesar el pedido.
-        # Esto podría implicar cambiar el estado del pedido y realizar otras acciones necesarias.
-        self.estado = "Procesado"
-        print(f"El pedido #{self.id} ha sido procesado.")
+    def procesarPedido(self,id, estado, conexion):
+         try:
+            cursor = conexion.obtener_cursor()
+            id = input("Ingrese el ID del pedido a acualizar: ")
+
+            # Verificar si el producto con el ID proporcionado existe en la base de datos
+            cursor.execute("SELECT id FROM PEDIDO WHERE id = %s", (id,))
+            pedido = cursor.fetchone()
+
+            if not pedido:
+                print(f"No se encontró ningún pedido con el ID {id}.")
+                return
+
+
+            # Define la sentencia SQL para actualizar la contraseña de un cliente en la base de datos
+            sql = """
+            UPDATE pedido
+            SET estado = %s
+            WHERE id = %s
+            """
+        
+ 
+            # Valores a actualizar
+            valores = (
+                estado if estado  else self.estado,
+                id
+            )
+
+            # Ejecuta la sentencia SQL para actualizar el cliente
+            cursor.execute(sql, valores)
+
+            # Confirma los cambios en la base de datos
+            conexion.conexion.commit()
+
+            print(f"El estado del Pedido ID {self.id} ha sido actualizada en la base de datos")
+
+         except mysql.connector.Error as error:
+            print(f"Error al actualizar el estado del pedido en la  base de datos: {error}")
+    
+       
 
     def enviarMail(self):
-        # Implementa la lógica para enviar un correo relacionado con el pedido.
         print(f"Se ha enviado un correo sobre el pedido #{self.id} al usuario.")
 
     def registrarPedido(self, conexion):
         try:
-            cursor = conexion.cursor()
+            cursor = conexion.obtener_cursor()
 
             # Define la sentencia SQL para insertar un pedido en la base de datos
             sql = """
@@ -50,7 +86,7 @@ class Pedido:
             self.id = cursor.lastrowid
 
             # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             # Agregar relaciones entre pedido y productos en la tabla Pedido_Producto
             for producto in self.productos:
@@ -60,30 +96,70 @@ class Pedido:
                 """
                 valores_relacion = (self.id, producto.id)
                 cursor.execute(sql_relacion, valores_relacion)
-                conexion.commit()
+                conexion.conexion.commit()
 
             print(f"Pedido #{self.id} insertado en la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al insertar pedido en la base de datos: {error}")
-    
-    def eliminarPedido(self,conexion):
+
+    def eliminarPedido(self, conexion):
         try:
-            cursor = conexion.cursor()
-
-            # Define la sentencia SQL para eliminar un cliente de la base de datos
+            cursor = conexion.obtener_cursor()
             sql = "DELETE FROM Pedido WHERE id = %s"
-
-            # Valor a insertar (el ID del pedido a eliminar)
             valor = (self.id,)
-
-            # Ejecuta la sentencia SQL
             cursor.execute(sql, valor)
-
-            # Confirma los cambios en la base de datos
-            conexion.commit()
+            conexion.conexion.commit()
 
             print("Pedido eliminado de la base de datos")
 
         except mysql.connector.Error as error:
             print(f"Error al eliminar pedido de la base de datos: {error}")
+
+    def obtenerProductosDelPedido(self, conexion):
+        try:
+            cursor = conexion.obtener_cursor()
+
+            # Define la sentencia SQL para seleccionar productos asociados a un pedido
+            sql = """
+            SELECT Producto.* FROM Producto
+            JOIN Pedido_Producto ON Producto.id = Pedido_Producto.producto_id
+            WHERE Pedido_Producto.pedido_id = %s
+            """
+            cursor.execute(sql, (self.id,))
+            productos_data = cursor.fetchall()
+
+            productos = []
+            for producto_data in productos_data:
+                producto = Producto(*producto_data)
+                productos.append(producto)
+
+            return productos
+
+        except mysql.connector.Error as error:
+            print(f"Error al obtener productos del pedido: {error}")
+            return []
+
+    def mostrarTodosLosPedidos(self, conexion):
+        try:
+            cursor = conexion.obtener_cursor()
+
+            # Define la sentencia SQL para seleccionar todos los pedidos
+            sql = "SELECT * FROM Pedido"
+            cursor.execute(sql)
+            pedidos_data = cursor.fetchall()
+
+            if not pedidos_data:
+                print("No hay pedidos en la base de datos.")
+            else:
+                print("Lista de Pedidos:")
+                for pedido_data in pedidos_data:
+                    pedido = Pedido(*pedido_data)
+                    # Agregar productos al pedido
+                    productos = pedido.obtenerProductosDelPedido(conexion)
+                    pedido.productos = productos
+                    pedido.mostrarPedido()
+                    print("\n")
+
+        except mysql.connector.Error as error:
+            print(f"Error al obtener la lista de pedidos: {error}")
