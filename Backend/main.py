@@ -139,12 +139,20 @@ def main():
                 opcion = input("Seleccione una opción: ")
 
                 if opcion == "1":
-                    # Registrar un nuevo pedido
-                    id_usuario = input("Ingrese el ID del usuario que realiza el pedido: ")
-                    estado = input("Ingrese el estado del pedido: ")  # Por ejemplo, "Pendiente"
-
-                    nuevo_pedido = Pedido(id=None, id_usuario=id_usuario, estado=estado)
-
+                    
+                    while True:
+                        # Lógica para buscar un usuario en la base de datos
+                        # Registrar un nuevo pedido
+                        usuario_id = input("Ingrese el ID del usuario que realiza el pedido: ")
+                        # Debes buscar el producto en la base de datos y crear un objeto Producto
+                        # Puedes implementar un método en la clase Producto para buscar un producto por ID
+                        usuario = Usuario.buscarUsuarioPorId(conexion, usuario_id)
+                        if usuario:
+                            estado = input("Ingrese el estado del pedido: ")  # Por ejemplo, "Pendiente"
+                            nuevo_pedido = Pedido(id=None, id_usuario=usuario_id, estado=estado)
+                            break
+                        else:
+                            print(f"No se encontró ningún producto con el ID {id_usuario}.")
                     # Lógica para agregar productos al pedido
                     while True:
                         producto_id = input("Ingrese el ID del producto a agregar al pedido (o Enter para finalizar): ")
@@ -197,7 +205,7 @@ def main():
                     contrasenia = input("Ingrese su contraseña: ") 
                     domicilio = input("Ingrese su domicilio: ")
                     tipo=input("Tipo de usuario: ")
-                    usuario = Usuario (id, nombre, apellido, correo, contrasenia, domicilio, tipo)
+                    usuario = Usuario (nombre, apellido, correo, contrasenia, domicilio, tipo)
                     usuario.registrarUsuario(conexion)
                 elif opcion == "2":
                     correo = input("Ingrese su correo: ")
@@ -212,14 +220,14 @@ def main():
                         
                 elif opcion == "3":
                     id = input("Ingrese el ID del usuario a eliminar: ")
-                    usuario = Usuario(id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
+                    usuario = Usuario(nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
                     usuario.eliminarUsuario(conexion, id)
                     
                 elif opcion == "4":
-                    usuario = Usuario (id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
+                    usuario = Usuario (nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
                     usuario.actualizarUsuario(conexion)
                 elif opcion == "5":
-                    usuario = Usuario(id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
+                    usuario = Usuario(nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
                     usuario.mostrarTodosLosUsuarios(conexion)
                 elif opcion == "6":
                     break
