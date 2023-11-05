@@ -20,7 +20,7 @@ def main():
     # Configurar los datos de conexión a la base de datos
     host = "localhost"
     usuario = "root"
-    contrasenia = "Andree.07"
+    contrasenia = ""
     base_datos = "aymara"
 
     # Crear una instancia de la clase Conexion
