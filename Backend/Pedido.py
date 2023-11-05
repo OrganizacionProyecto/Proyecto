@@ -1,5 +1,6 @@
 import mysql.connector
 from Producto import Producto
+from Usuario import Usuario
 
 class Pedido:
     def __init__(self, id, id_usuario, estado):
@@ -24,8 +25,45 @@ class Pedido:
         self.estado = "Procesado"
         print(f"El pedido #{self.id} ha sido procesado.")
 
-    def enviarMail(self):
-        print(f"Se ha enviado un correo sobre el pedido #{self.id} al usuario.")
+    def enviarMail(self, conexion, id):
+        cursor = conexion.obtener_cursor()
+
+        try:
+            # Define la consulta SQL para buscar el pedido por su ID
+            consulta = "SELECT * FROM Pedido WHERE id = %s"
+            # Ejecuta la consulta con el ID del pedido a buscar
+            cursor.execute(consulta, (id,))
+            # Obtiene los resultados de la consulta
+            resultado = cursor.fetchone()
+            print(f"Verificacion del pedido numero: {resultado[0]}")
+            print(f"Estado: {resultado[2]}")
+            if resultado:
+                id_usuario = resultado[1]
+                # Define la consulta SQL para buscar los datos de usuario que realizo el peddido
+                consulta = "SELECT * FROM usuario WHERE id = %s"
+                # Ejecuta la consulta con el ID del pedido a buscar
+                cursor.execute(consulta, (id_usuario,))
+                # Obtiene el resultado de la consulta
+                resultadoUsuario = cursor.fetchone()
+                
+                if resultadoUsuario:
+                    #Muestro la tupla con toda la informacion del usuario que realizo el pedido
+                    print("A nombre de: ")
+                    print(f"Nombre: {resultadoUsuario[1]}")
+                    print(f"Apellido: {resultadoUsuario[2]}")
+                    print(f"Correo: {resultadoUsuario[3]}")
+                    print(f"Domicilio: {resultadoUsuario[5]}")
+                else:
+                    print(f"No se encontró ningún usuario con ID {id_usuario}")
+
+                   
+               
+            else:
+                print(f"No se encontró ningún pedido con ID {id}")
+        except mysql.connector.Error as error:
+            print(f"Error al buscar el pedido en la base de datos: {error}")   
+
+        cursor.close()              
 
     def registrarPedido(self, conexion):
         try:
@@ -60,6 +98,7 @@ class Pedido:
                 conexion.conexion.commit()
 
             print(f"Pedido #{self.id} insertado en la base de datos")
+            self.enviarMail(conexion, self.id)
 
         except mysql.connector.Error as error:
             print(f"Error al insertar pedido en la base de datos: {error}")
@@ -67,39 +106,47 @@ class Pedido:
     def eliminarPedido(self, conexion):
         try:
             cursor = conexion.obtener_cursor()
-            sql = "DELETE FROM Pedido WHERE id = %s"
-            valor = (self.id,)
-            cursor.execute(sql, valor)
+
+            # Obtén todos los registros de Pedido_Producto relacionados con el pedido
+            sql_obtener_relaciones = "SELECT id FROM Pedido_Producto WHERE pedido_id = %s"
+            cursor.execute(sql_obtener_relaciones, (self.id,))
+            relaciones = cursor.fetchall()
+
+            # Elimina los registros relacionados en Pedido_Producto
+            for relacion in relaciones:
+                sql_eliminar_relacion = "DELETE FROM Pedido_Producto WHERE id = %s"
+                cursor.execute(sql_eliminar_relacion, (relacion[0],))
+
+            # Ahora puedes eliminar el pedido
+            sql_eliminar_pedido = "DELETE FROM Pedido WHERE id = %s"
+            cursor.execute(sql_eliminar_pedido, (self.id,))
+
+            # Confirma los cambios en la base de datos
             conexion.conexion.commit()
 
-            print("Pedido eliminado de la base de datos")
+            print("Pedido y registros relacionados eliminados de la base de datos")
 
         except mysql.connector.Error as error:
-            print(f"Error al eliminar pedido de la base de datos: {error}")
+            print(f"Error al eliminar pedido y registros relacionados de la base de datos: {error}")
+
 
     def obtenerProductosDelPedido(self, conexion):
         try:
             cursor = conexion.obtener_cursor()
 
-            # Define la sentencia SQL para seleccionar productos asociados a un pedido
-            sql = """
-            SELECT Producto.* FROM Producto
-            JOIN Pedido_Producto ON Producto.id = Pedido_Producto.producto_id
-            WHERE Pedido_Producto.pedido_id = %s
-            """
-            cursor.execute(sql, (self.id,))
-            productos_data = cursor.fetchall()
+            # Consultar si el usuario existe en la tabla de usuarios
+            consulta = "SELECT * FROM usuarios WHERE nombre = ?;"
+            cursor.execute(consulta, (self.usuario,))
+            resultado = cursor.fetchone()
 
-            productos = []
-            for producto_data in productos_data:
-                producto = Producto(*producto_data)
-                productos.append(producto)
+            # Cerrar la conexión a la base de datos
+            cursor.close()
 
-            return productos
+            return resultado
 
         except mysql.connector.Error as error:
             print(f"Error al obtener productos del pedido: {error}")
-            return []
+            return None
 
     def mostrarTodosLosPedidos(self, conexion):
         try:
