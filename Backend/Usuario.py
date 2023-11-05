@@ -96,8 +96,6 @@ class Usuario:
 
         except mysql.connector.Error as error:
             print(f"Error al modificar la contraseña del usuario en la  base de datos: {error}")
-       
-        
 
     def iniciarSesion(self, correo, contrasenia, conexion):
         try:
