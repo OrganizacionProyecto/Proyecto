@@ -12,7 +12,29 @@ class Pedido:
         # Agrega un producto al pedido
         self.productos.append(producto)
 
+## el siguiente comentario es proyeccion para ingresar un valor a los envios de pedidos
+    # def provincia(self): #aca lo usamos para que saber de que provincia es, debería acceder al domicilio y ver si "contiene" la prinvincia en el dom.
+    #         domicilio = self.cliente.domicilio #acca accederia a la clase cliente...
+    #         provincias = {          #array
+    #             "Cordoba": 0,
+    #             "Buenos Aires": 700,
+    #             "Chaco": 1000,
+    #             "Formosa": 800,
+    #             # podemos seguir agregando pero para ver si lo dejamos lo dejo ahi
+    #         }
 
+    #         for provincia, precio in provincias.items():
+    #             if provincia in domicilio: #si encuentra dentro del domicilio la provincia que esta en la lista
+    #                 return provincia, precio  #devuelve la procinvia y el precio y sino imprime
+
+    #         return "No encontrada", 0  # en lugar de provincia devuelve otra cosa y precio $0
+        
+    # def envio(self):
+    #     provincia, precio = self.provincia()
+    #     if provincia == "No encontrada":
+    #         print("Lo sentimos, no ofrecemos servicio de envío en tu provincia.")
+    #     else:
+    #         print(f"Provincia: {provincia}, Precio de Envío: ${precio}")
 
     def mostrarPedido(self):
         print(f"Pedido #{self.id}")
