@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-    integrity="sha256-2TnSHycBDAm2wpZmgdi0z81kykGPJAkiUY+Wf97RbvY=" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
-    integrity="sha256-gOQJIa9+K/XdfAuBkg2ONAdw5EnQbokw/s2b8BqsRFg=" crossorigin="anonymous"></script>
+        integrity="sha256-2TnSHycBDAm2wpZmgdi0z81kykGPJAkiUY+Wf97RbvY=" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="Logos/icono1.ico" type="image/x-icon">
     <title>Aymara</title>
 </head>
-    
+
 <body>
 
     <div class="container-boton">
@@ -22,35 +21,37 @@
 
     <header class="header">
         <nav class="nav">
-            <div  class="logo_nav">
-                <img src="logos/Logo Aymará.png" alt="Logo">
+            <div class="logo_nav">
+                <a href="index.html">
+                    <img src="logos/logoaymara.png" alt="Logo">
+                </a>
             </div>
-                <ul>
-                    <li><a class="a" href="index.html">Inicio</a></li>
-                    <li><a class="a" href="productos.html">Productos</a></li>
-                    <li><a class="a" href="contacto.html">Contacto</a></li>
-                </ul>
+            <ul>
+                <li><a class="a" href="index.html">Inicio</a></li>
+                <li><a class="a" href="productos.html">Productos</a></li>
+                <li><a class="a" href="contacto.html">Contacto</a></li>
+                <li><a class="a" href="ingresar.html">Ingresar</a></li>
+                <li><a class="a" href="Registrarse.html">Registrarse</a></li>
+            </ul>
         </nav>
     </header>
 
     <div class="container-contacto mt-5">
         <form class="form">
             <h3>Contacto</h3>
-            <p>Por favor, completa el formulario a continuación para ponerte en contacto con nosotros. Responderemos a la brevedad.</p>
+            <p>Por favor, completa el formulario a continuación para ponerte en contacto con nosotros. Responderemos a
+                la brevedad.</p>
             <div class="info">
-                <p>Siguenos en nuestras redes sociales:</p>   
-                <div class="social">
-                    <a href="https://www.facebook.com/Aymara.Productos.Naturales" target="Facebook"><img src="Imag_contacto/Face.webp" alt=""></a>
-                    <a href="https://www.instagram.com/aymara_p_naturales/" target="Instagram"><img src="Imag_contacto/inst.png" alt=""></a>
-                    <a href="https://twitter.com/Aymara_P_N" target="Twitter"><img src="Imag_contacto/tw.png" alt=""></a>
-                </div>
+                <p>¿Necesitás atención personalizada?</p>
+                <p>Comunicaté al:</p>
+                <p class="numero_tel">xxx xxx xxx</p>
             </div>
         </form>
         <form class="form2">
-            <label for="nombre" >Nombre y Apellido</label>
+            <label for="nombre">Nombre y Apellido</label>
             <input type="text" id="nombre" class="box" name="nombre" required>
-    
-            <label for="email" >Correo Electrónico</label>
+
+            <label for="email">Correo Electrónico</label>
             <input type="email" id="email" class="box" name="email" required>
 
             <label for="edad">Edad</label>
@@ -58,42 +59,48 @@
 
             <label for="sexo">Sexo</label>
             <select id="sexo" class="box" name="sexo" required>
-                <option value="hombre">Hombre</option>
+                <option value="">-</option>
+                <option value="Hombre">Hombre</option>
                 <option value="mujer">Mujer</option>
                 <option value="n-s">Prefiero no Contestar</option>
             </select>
 
             <label for="altura">Altura (cm)</label>
             <input type="number" id="altura" class="box" name="altura" required>
-        
+
             <label for="peso">Peso (kg)</label>
             <input type="number" id="peso" class="box" name="peso" required>
 
             <label for="objetivo">Objetivo</label>
             <select id="objetivo" class="box" name="objetivo" required>
+                <option value="">-</option>
                 <option value="perdida_peso">Pérdida de Peso</option>
                 <option value="mantenimiento">Mantenimiento</option>
                 <option value="aumento_masa">Aumento de Masa Muscular</option>
             </select>
 
             <label>Desea Recibir Asesoramiento Nutricional
-            <input type="checkbox" name="recibir_informacion" value="si"></label>
-            
+                <input type="checkbox" name="recibir_informacion" value="si"></label>
+
             <button type="submit" value="enviar" class="submit">Enviar</button>
         </form>
     </div>
 
-    <footer class="footer text">
-        <section id="contacto" class="container text-center">
+    <footer class="footer text-center">
+        <div id="contacto" class="container text-center">
             <div class="social">
-            <a href="mailto: productos_aymara@hotmail.com" target="Correo"><img src="imag_contacto/correo.png" alt=""></a>
-            <a href="https://www.facebook.com/Aymara.Productos.Naturales" target="Facebook"><img src="Imag_contacto/Face.webp" alt=""></a>
-            <a href="https://www.instagram.com/aymara_p_naturales/" target="Instagram"><img src="Imag_contacto/inst.png" alt=""></a>
-            <a href="https://twitter.com/Aymara_P_N" target="Twitter"><img src="Imag_contacto/tw.png" alt=""></a>
+                <a href="mailto:productos_aymara@hotmail.com" target="Correo"><img src="imag_contacto/correo.png" alt=""></a>
+                <a href="https://www.facebook.com/Aymara.Productos.Naturales" target="Facebook"><img src="Imag_contacto/Face.webp" alt=""></a>
+                <a href="https://www.instagram.com/aymara_p_naturales/" target="Instagram"><img src="Imag_contacto/inst.png" alt=""></a>
+                <a href="https://twitter.com/Aymara_P_N" target="Twitter"><img src="Imag_contacto/tw.png" alt=""></a>
+            </div>
         </div>
-    </section>
+
+
         <p>&copy; 2023 Aymará Productos Naturales. Todos los derechos reservados.</p>
     </footer>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha256-gOQJIa9+K/XdfAuBkg2ONAdw5EnQbokw/s2b8BqsRFg=" crossorigin="anonymous"></script>
+        <script src="/eventos.js"></script>
 </body>
 </html>
