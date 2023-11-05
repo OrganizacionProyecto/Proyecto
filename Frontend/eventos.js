@@ -1,5 +1,19 @@
 //evento mensaje envio formulario contacto
 
+
+
+const imagenes = ["imag_productos/aceite_coco.jpeg", "imag_productos/cafe_verde.jpeg", "imag_productos/garcimax.jpeg"];
+let index = 0;
+
+function cambiarImagen() {
+    document.getElementById("carruselImagen").src = imagenes[index];
+    index = (index + 1) % imagenes.length;
+}
+
+cambiarImagen(); // Muestra la primera imagen de inmediato
+
+setInterval(cambiarImagen, 2000); // Cambia de imagen cada 2 segundos
+
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.querySelector('.form2');
 
@@ -80,3 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       alert('Excelente!!! en breve recibiras un mail con indicaciones.');
     });
+
+   
+    
