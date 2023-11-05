@@ -20,7 +20,7 @@ def main():
     # Configurar los datos de conexión a la base de datos
     host = "localhost"
     usuario = "root"
-    contrasenia = ""
+    contrasenia = "Andree.07"
     base_datos = "aymara"
 
     # Crear una instancia de la clase Conexion
@@ -133,9 +133,10 @@ def main():
             while True:
                 print("\nGestionar Pedidos:")
                 print("1. Registrar Pedido")
-                print("2. Eliminar Pedido")
-                print("3. Ver todos los pedidos")
-                print("4. Volver al Menú Principal")
+                print("2. Actualizar Estado")
+                print("3. Eliminar Pedido")
+                print("4. Ver todos los pedidos")
+                print("5. Volver al Menú Principal")
                 opcion = input("Seleccione una opción: ")
 
                 if opcion == "1":
@@ -162,18 +163,26 @@ def main():
                             print(f"No se encontró ningún producto con el ID {producto_id}.")
 
                     nuevo_pedido.registrarPedido(conexion)
+
                 elif opcion == "2":
+                    # Modificar estado de un pedido
+                    id_pedido = input("Ingrese el ID del pedido que desea modificar su estado: ")
+                    pedido = Pedido(id=id_pedido, id_usuario=None, estado=None)
+                    pedido.procesarPedido(conexion)
+
+
+                elif opcion == "3":
                     # Eliminar un pedido
                     id_pedido = input("Ingrese el ID del pedido que desea eliminar: ")
                     pedido_a_eliminar = Pedido(id=id_pedido, id_usuario=None, estado=None)
                     pedido_a_eliminar.eliminarPedido(conexion)
 
-                elif opcion == "3":
+                elif opcion == "4":
                     # Mostrar todos los pedidos
                     print("\nLista de Pedidos:")
                     pedido=Pedido(id=None, id_usuario=None, estado=None)
                     pedido.mostrarTodosLosPedidos(conexion)
-                elif opcion == "4":
+                elif opcion == "5":
                     break
 
                 else:
@@ -188,7 +197,8 @@ def main():
                 print("3. Eliminar Usuario")
                 print("4. Actualizar usuario")
                 print("5. Mostrar Usuarios")
-                print("6. Volver al Menú Principal")
+                print("6. Actualizar contraseña")
+                print("7. Volver al menu principal")
 
                 opcion = input("Seleccione una opción: ")
                 if opcion == "1":
@@ -223,6 +233,9 @@ def main():
                     usuario = Usuario(nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
                     usuario.mostrarTodosLosUsuarios(conexion)
                 elif opcion == "6":
+                    usuario = Usuario(id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
+                    usuario.actualizarContrasenia(conexion)
+                elif opcion == "7":
                     break
                             
         if op == "6":

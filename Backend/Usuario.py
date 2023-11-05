@@ -12,6 +12,7 @@ class Usuario:
         self.domicilio = domicilio
         self.tipo = tipo
 
+
     def get_id(self):
         return self.id
 
@@ -54,8 +55,45 @@ class Usuario:
     def set_tipo(self, tipo):
         self.tipo = tipo
 
-    def cambiarContrasenia(self, nueva_contrasenia):
-        self.contrasenia = nueva_contrasenia
+    def actualizarContrasenia(self, conexion):
+        try:
+            cursor = conexion.obtener_cursor()
+            usuario_id = input("Ingrese el ID del usuario que desea actualizar: ")
+
+            # Verificar si el producto con el ID proporcionado existe en la base de datos
+            cursor.execute("SELECT id FROM Usuario WHERE id = %s", (usuario_id,))
+            producto = cursor.fetchone()
+
+            if not producto:
+                print(f"No se encontró ningún Usuario con el ID {usuario_id}.")
+                return
+
+
+            # Define la sentencia SQL para actualizar un cliente en la base de datos
+            sql = """
+            UPDATE Usuario
+            SET contrasenia = %s
+            WHERE id = %s
+            """
+
+            contrasenia = input("Nueva contraseña: ")
+            # Valores a actualizar
+            valores = (
+
+                contrasenia if contrasenia  else self.contrasenia,
+                usuario_id
+            )
+
+            # Ejecuta la sentencia SQL para actualizar el cliente
+            cursor.execute(sql, valores)
+
+            # Confirma los cambios en la base de datos
+            conexion.conexion.commit()
+
+            print(f"Contraseña del ID {self.id} actualizado en la base de datos")
+
+        except mysql.connector.Error as error:
+            print(f"Error al actualizar usuario en la  base de datos: {error}")
 
     def iniciarSesion(self, correo, contrasenia, conexion):
         try:
