@@ -247,7 +247,6 @@ div > iframe {
 }
 
 .info {
-  margin-top: 92%;
   flex-direction: column;
 }
 
@@ -417,4 +416,3 @@ div > iframe {
   align-items: center;
 
 }
-
