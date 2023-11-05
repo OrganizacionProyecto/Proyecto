@@ -20,7 +20,7 @@ def main():
     # Configurar los datos de conexión a la base de datos
     host = "localhost"
     usuario = "root"
-    contrasenia = ""
+    contrasenia = "Andree.07"
     base_datos = "aymara"
 
     # Crear una instancia de la clase Conexion
@@ -187,7 +187,8 @@ def main():
                 print("3. Eliminar Usuario")
                 print("4. Actualizar usuario")
                 print("5. Mostrar Usuarios")
-                print("6. Volver al Menú Principal")
+                print("6. Actualizar contraseña")
+                print("7. Volver al menu principal")
 
                 opcion = input("Seleccione una opción: ")
                 if opcion == "1":
@@ -222,6 +223,9 @@ def main():
                     usuario = Usuario(id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
                     usuario.mostrarTodosLosUsuarios(conexion)
                 elif opcion == "6":
+                    usuario = Usuario(id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
+                    usuario.actualizarContrasenia(conexion)
+                elif opcion == "7":
                     break
                             
         if op == "6":

@@ -10,6 +10,7 @@ class Usuario:
         self.domicilio = domicilio
         self.tipo = tipo
 
+
     def get_id(self):
         return self.id
 
@@ -52,10 +53,10 @@ class Usuario:
     def set_tipo(self, tipo):
         self.tipo = tipo
 
-    def actualizarContrasenia(self, contrasenia, nuevaContrasenia, actualContrasenia, conexion):
+    def actualizarContrasenia(self, conexion):
         try:
             cursor = conexion.obtener_cursor()
-            usuario_id = input("Ingrese el ID del usuario que desea modificar su contraseña: ")
+            usuario_id = input("Ingrese el ID del usuario que desea actualizar: ")
 
             # Verificar si el producto con el ID proporcionado existe en la base de datos
             cursor.execute("SELECT id FROM Usuario WHERE id = %s", (usuario_id,))
@@ -66,22 +67,17 @@ class Usuario:
                 return
 
 
-            # Define la sentencia SQL para actualizar la contraseña de un cliente en la base de datos
+            # Define la sentencia SQL para actualizar un cliente en la base de datos
             sql = """
             UPDATE Usuario
             SET contrasenia = %s
             WHERE id = %s
             """
 
-            actualContrasenia = input("Ingresar contraseña actual: ")
-            if contrasenia == actualContrasenia:
-                nuevaContrasenia = input("Nueva contraseña: ")
-                contrasenia = nuevaContrasenia
-            else:
-                print("Contraseñia invalida. Intente de nuevo")
- 
+            contrasenia = input("Nueva contraseña: ")
             # Valores a actualizar
             valores = (
+
                 contrasenia if contrasenia  else self.contrasenia,
                 usuario_id
             )
@@ -92,10 +88,10 @@ class Usuario:
             # Confirma los cambios en la base de datos
             conexion.conexion.commit()
 
-            print(f"La contraseña del Usuario ID {self.id} ha sido actualizada en la base de datos")
+            print(f"Contraseña del ID {self.id} actualizado en la base de datos")
 
         except mysql.connector.Error as error:
-            print(f"Error al modificar la contraseña del usuario en la  base de datos: {error}")
+            print(f"Error al actualizar usuario en la  base de datos: {error}")
 
     def iniciarSesion(self, correo, contrasenia, conexion):
         try:
@@ -132,12 +128,12 @@ class Usuario:
 
             # Define la sentencia SQL para insertar un cliente en la base de datos
             sql = """
-            INSERT INTO Usuario (id, nombre, apellido, correo, contrasenia, domicilio)
+            INSERT INTO Usuario (id, nombre, apellido, correo, contrasenia, domicilio, tipo)
             VALUES (%s, %s, %s, %s, %s, %s,%s)
             """
 
             # Valores a insertar
-            valores = (self.id, self.nombre, self.apellido, self.correo, self.contrasenia, self.domicilio)
+            valores = (self.id, self.nombre, self.apellido, self.correo, self.contrasenia, self.domicilio, self.tipo)
 
             # Ejecuta la sentencia SQL
             cursor.execute(sql, valores)
