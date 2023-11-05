@@ -394,5 +394,27 @@ div > iframe {
   }
 }
 
+.contenedor34 {
+  
+  border: 0px solid #000; /* Borde de 1 píxel, puedes ajustar el color y el grosor */
+  overflow: hidden; /* Recorta la imagen que se desborda del cuadro */
+  max-width: 100%;
+  height: auto;
+}
 
+.imagen34 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta la imagen al tamaño del cuadro sin distorsionarla */
+ 
+  
+}
+
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
 
