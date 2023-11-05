@@ -133,61 +133,59 @@ def main():
             while True:
                 print("\nGestionar Pedidos:")
                 print("1. Registrar Pedido")
-                print("2. Actualizar Estado")
-                print("3. Eliminar Pedido")
-                print("4. Ver todos los pedidos")
+                print("2. Eliminar Pedido")
+                print("3. Ver todos los pedidos")
+                print("4. Actualizar estado de pedido")
                 print("5. Volver al Menú Principal")
                 opcion = input("Seleccione una opción: ")
 
                 if opcion == "1":
-                    
-                    while True:
-                        usuario_id = input("Ingrese el ID del usuario que realiza el pedido: ")
-                        usuario = Usuario.buscarUsuarioPorId(conexion, usuario_id)
-                        if usuario:
-                            estado = input("Ingrese el estado del pedido: ")  # Por ejemplo, "Pendiente"
-                            nuevo_pedido = Pedido(id=None, id_usuario=usuario_id, estado=estado)
-                            break
-                        else:
-                            print(f"No se encontró ningún producto con el ID {id_usuario}.")
+                    # Registrar un nuevo pedido
+                    id_usuario = input("Ingrese el ID del usuario que realiza el pedido: ")
+                    estado = input("Ingrese el estado del pedido: ")  # Por ejemplo, "Pendiente"
 
+                    nuevo_pedido = Pedido(id=None, id_usuario=id_usuario, estado=estado)
+
+                    # Lógica para agregar productos al pedido
                     while True:
                         producto_id = input("Ingrese el ID del producto a agregar al pedido (o Enter para finalizar): ")
                         if not producto_id:
                             break  # Sal del bucle si el usuario presiona Enter
 
+                        # Debes buscar el producto en la base de datos y crear un objeto Producto
+                        # Puedes implementar un método en la clase Producto para buscar un producto por ID
                         producto = Producto.buscarProductoPorId(conexion, producto_id)
                         if producto:
                             nuevo_pedido.agregarProducto(producto)
                         else:
                             print(f"No se encontró ningún producto con el ID {producto_id}.")
 
+                    # Registra el pedido en la base de datos
                     nuevo_pedido.registrarPedido(conexion)
-
                 elif opcion == "2":
-                    # Modificar estado de un pedido
-                    id_pedido = input("Ingrese el ID del pedido que desea modificar su estado: ")
-                    pedido = Pedido(id=id_pedido, id_usuario=None, estado=None)
-                    pedido.procesarPedido(conexion)
-
-
-                elif opcion == "3":
                     # Eliminar un pedido
                     id_pedido = input("Ingrese el ID del pedido que desea eliminar: ")
                     pedido_a_eliminar = Pedido(id=id_pedido, id_usuario=None, estado=None)
                     pedido_a_eliminar.eliminarPedido(conexion)
 
-                elif opcion == "4":
+                elif opcion == "3":
                     # Mostrar todos los pedidos
                     print("\nLista de Pedidos:")
                     pedido=Pedido(id=None, id_usuario=None, estado=None)
                     pedido.mostrarTodosLosPedidos(conexion)
+                
+                elif opcion == "4":
+                    # Actualizar el estado de un pedido
+                    pedido=Pedido(id=None, id_usuario=None, estado=None)
+                    pedido.procesarPedido(conexion)
+                    
                 elif opcion == "5":
                     break
 
                 else:
                     print("Opción no válida. Por favor, seleccione una opción válida.")
 
+                        
                         
         if op == "5":
             while True:   
@@ -208,7 +206,7 @@ def main():
                     contrasenia = input("Ingrese su contraseña: ") 
                     domicilio = input("Ingrese su domicilio: ")
                     tipo=input("Tipo de usuario: ")
-                    usuario = Usuario (nombre, apellido, correo, contrasenia, domicilio, tipo)
+                    usuario = Usuario (id, nombre, apellido, correo, contrasenia, domicilio, tipo)
                     usuario.registrarUsuario(conexion)
                 elif opcion == "2":
                     correo = input("Ingrese su correo: ")
@@ -223,14 +221,14 @@ def main():
                         
                 elif opcion == "3":
                     id = input("Ingrese el ID del usuario a eliminar: ")
-                    usuario = Usuario(nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
+                    usuario = Usuario(id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
                     usuario.eliminarUsuario(conexion, id)
                     
                 elif opcion == "4":
-                    usuario = Usuario (nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
+                    usuario = Usuario (id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
                     usuario.actualizarUsuario(conexion)
                 elif opcion == "5":
-                    usuario = Usuario(nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
+                    usuario = Usuario(id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
                     usuario.mostrarTodosLosUsuarios(conexion)
                 elif opcion == "6":
                     usuario = Usuario(id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
