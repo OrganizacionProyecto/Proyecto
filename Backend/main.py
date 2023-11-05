@@ -141,11 +141,7 @@ def main():
                 if opcion == "1":
                     
                     while True:
-                        # Lógica para buscar un usuario en la base de datos
-                        # Registrar un nuevo pedido
                         usuario_id = input("Ingrese el ID del usuario que realiza el pedido: ")
-                        # Debes buscar el producto en la base de datos y crear un objeto Producto
-                        # Puedes implementar un método en la clase Producto para buscar un producto por ID
                         usuario = Usuario.buscarUsuarioPorId(conexion, usuario_id)
                         if usuario:
                             estado = input("Ingrese el estado del pedido: ")  # Por ejemplo, "Pendiente"
@@ -153,21 +149,18 @@ def main():
                             break
                         else:
                             print(f"No se encontró ningún producto con el ID {id_usuario}.")
-                    # Lógica para agregar productos al pedido
+
                     while True:
                         producto_id = input("Ingrese el ID del producto a agregar al pedido (o Enter para finalizar): ")
                         if not producto_id:
                             break  # Sal del bucle si el usuario presiona Enter
 
-                        # Debes buscar el producto en la base de datos y crear un objeto Producto
-                        # Puedes implementar un método en la clase Producto para buscar un producto por ID
                         producto = Producto.buscarProductoPorId(conexion, producto_id)
                         if producto:
                             nuevo_pedido.agregarProducto(producto)
                         else:
                             print(f"No se encontró ningún producto con el ID {producto_id}.")
 
-                    # Registra el pedido en la base de datos
                     nuevo_pedido.registrarPedido(conexion)
                 elif opcion == "2":
                     # Eliminar un pedido
