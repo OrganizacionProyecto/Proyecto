@@ -1,3 +1,18 @@
+
+//funcion carrusel
+
+const imagenes = ["imag_productos/aceite_coco.jpeg", "imag_productos/cafe_verde.jpeg", "imag_productos/garcimax.jpeg"];
+let index = 0;
+
+function cambiarImagen() {
+    document.getElementById("carruselImagen").src = imagenes[index];
+    index = (index + 1) % imagenes.length;
+}
+
+cambiarImagen(); // Muestra la primera imagen de inmediato
+
+setInterval(cambiarImagen, 2000); // Cambia de imagen cada 2 segundos
+
 //evento mensaje envio formulario contacto
 
 document.addEventListener('DOMContentLoaded', function() {
