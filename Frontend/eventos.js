@@ -1,5 +1,6 @@
+//evento mensaje envio formulario contacto
 
-//funcion carrusel
+
 
 const imagenes = ["imag_productos/aceite_coco.jpeg", "imag_productos/cafe_verde.jpeg", "imag_productos/garcimax.jpeg"];
 let index = 0;
@@ -12,8 +13,6 @@ function cambiarImagen() {
 cambiarImagen(); // Muestra la primera imagen de inmediato
 
 setInterval(cambiarImagen, 2000); // Cambia de imagen cada 2 segundos
-
-//evento mensaje envio formulario contacto
 
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.querySelector('.form2');
@@ -76,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (usuarioCorrecto) {
         alert('Inicio de sesión exitoso');
       } else {
-        alert('El nombre de usuario y/o la contraseña no son correctos.');
+        alert("El nombre de usuario y/o la contraseña no son correctos.");
       }
     });
   }
@@ -95,3 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       alert('Excelente!!! en breve recibiras un mail con indicaciones.');
     });
+
+   
+    
