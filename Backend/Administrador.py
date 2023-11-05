@@ -43,9 +43,6 @@ class Administrador(Usuario):
 
 
 
-    def procesarPedidos(self):
-        
-        pass
 
     def gestionarProductos(self):
         

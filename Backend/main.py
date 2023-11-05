@@ -133,9 +133,10 @@ def main():
             while True:
                 print("\nGestionar Pedidos:")
                 print("1. Registrar Pedido")
-                print("2. Eliminar Pedido")
-                print("3. Ver todos los pedidos")
-                print("4. Volver al Menú Principal")
+                print("2. Actualizar Estado")
+                print("3. Eliminar Pedido")
+                print("4. Ver todos los pedidos")
+                print("5. Volver al Menú Principal")
                 opcion = input("Seleccione una opción: ")
 
                 if opcion == "1":
@@ -161,18 +162,26 @@ def main():
 
                     # Registra el pedido en la base de datos
                     nuevo_pedido.registrarPedido(conexion)
+
                 elif opcion == "2":
+                    # Modificar estado de un pedido
+                    id_pedido = input("Ingrese el ID del pedido que desea modificar su estado: ")
+                    pedido = Pedido(id=id_pedido, id_usuario=None, estado=None)
+                    pedido.procesarPedido(conexion)
+
+
+                elif opcion == "3":
                     # Eliminar un pedido
                     id_pedido = input("Ingrese el ID del pedido que desea eliminar: ")
                     pedido_a_eliminar = Pedido(id=id_pedido, id_usuario=None, estado=None)
                     pedido_a_eliminar.eliminarPedido(conexion)
 
-                elif opcion == "3":
+                elif opcion == "4":
                     # Mostrar todos los pedidos
                     print("\nLista de Pedidos:")
                     pedido=Pedido(id=None, id_usuario=None, estado=None)
                     pedido.mostrarTodosLosPedidos(conexion)
-                elif opcion == "4":
+                elif opcion == "5":
                     break
 
                 else:

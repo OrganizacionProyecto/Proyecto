@@ -44,13 +44,13 @@ class Pedido:
         for producto in self.productos:
             print(f"  - {producto.nombre}")
 
-    def procesarPedido(self,id, estado, conexion):
+    def procesarPedido(self, conexion):
          try:
             cursor = conexion.obtener_cursor()
-            id = input("Ingrese el ID del pedido a acualizar: ")
+            pedido_id = input("Ingrese el ID del pedido a actualizar: ")
 
             # Verificar si el producto con el ID proporcionado existe en la base de datos
-            cursor.execute("SELECT id FROM PEDIDO WHERE id = %s", (id,))
+            cursor.execute("SELECT id FROM PEDIDO WHERE id = %s", (pedido_id,))
             pedido = cursor.fetchone()
 
             if not pedido:
@@ -64,12 +64,12 @@ class Pedido:
             SET estado = %s
             WHERE id = %s
             """
-        
+            estado= input("Nuevo estado: ")
  
             # Valores a actualizar
             valores = (
                 estado if estado  else self.estado,
-                id
+                pedido_id
             )
 
             # Ejecuta la sentencia SQL para actualizar el cliente
