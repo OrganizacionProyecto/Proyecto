@@ -38,14 +38,15 @@
 
     
         <div class="container-ingresar" id="registerContainer">
-            <form class= "formLogin" id="formLogin">
-                <h3>Inicia Sesión</h3>
-                <input type="text" class="box-ingresar" id="nombreUsuario" placeholder="Nombre de Usuario" required>
-                <input type="password" class="box-ingresar"  id="password" placeholder="Contraseña" required>
-                <button type="submit" class="submit-ingresar">Iniciar Sesión</button>
-                <p id="registerLink">¿No tienes cuenta? <a href="registro.html" id="showRegister">Regístrate</a></p>
+           
+            <form class="registroForm" id="registroForm">
+                <h3>Regístrate</h3>
+                <input type="text" class="box-ingresar" id="regNombreUsuario" placeholder="Nombre de Usuario" required>
+                <input type="password" class="box-ingresar"  id="regPassword" placeholder="Contraseña" required>
+                <input type="email" class="box-ingresar"  id="regEmail" placeholder="Dirección de Correo" required>
+                <button type="submit" class="submit-ingresar">Registrarse</button>
+                <p id="loginLink">¿Ya tienes una cuenta? <a href="ingresar.html" id="showLogin">Inicia Sesión</a></p>
             </form>
-         
         </div>
 
         <footer class="footer text-center">

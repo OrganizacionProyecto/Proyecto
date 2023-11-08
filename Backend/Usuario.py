@@ -1,6 +1,8 @@
 import mysql.connector
 
+
 class Usuario:
+        
     def __init__(self, id, nombre, apellido, correo, contrasenia, domicilio, tipo):
         self.id = id
         self.nombre = nombre
@@ -9,6 +11,7 @@ class Usuario:
         self.contrasenia = contrasenia
         self.domicilio = domicilio
         self.tipo = tipo
+
 
     def get_id(self):
         return self.id
@@ -52,8 +55,45 @@ class Usuario:
     def set_tipo(self, tipo):
         self.tipo = tipo
 
-    def cambiarContrasenia(self, nueva_contrasenia):
-        self.contrasenia = nueva_contrasenia
+    def actualizarContrasenia(self, conexion):
+        try:
+            cursor = conexion.obtener_cursor()
+            usuario_id = input("Ingrese el ID del usuario que desea actualizar: ")
+
+            # Verificar si el producto con el ID proporcionado existe en la base de datos
+            cursor.execute("SELECT id FROM Usuario WHERE id = %s", (usuario_id,))
+            producto = cursor.fetchone()
+
+            if not producto:
+                print(f"No se encontró ningún Usuario con el ID {usuario_id}.")
+                return
+
+
+            # Define la sentencia SQL para actualizar un cliente en la base de datos
+            sql = """
+            UPDATE Usuario
+            SET contrasenia = %s
+            WHERE id = %s
+            """
+
+            contrasenia = input("Nueva contraseña: ")
+            # Valores a actualizar
+            valores = (
+
+                contrasenia if contrasenia  else self.contrasenia,
+                usuario_id
+            )
+
+            # Ejecuta la sentencia SQL para actualizar el cliente
+            cursor.execute(sql, valores)
+
+            # Confirma los cambios en la base de datos
+            conexion.conexion.commit()
+
+            print(f"Contraseña del ID {self.id} actualizado en la base de datos")
+
+        except mysql.connector.Error as error:
+            print(f"Error al actualizar usuario en la  base de datos: {error}")
 
     def iniciarSesion(self, correo, contrasenia, conexion):
         try:
@@ -209,5 +249,21 @@ class Usuario:
         print("Tipo:", self.tipo)
         print()
 
+    def buscarUsuarioPorId(conexion, id):
+        try:
+            cursor = conexion.obtener_cursor()
 
+            # Define la sentencia SQL para buscar un usuario por ID
+            sql = "SELECT * FROM Usuario WHERE id = %s"
+            cursor.execute(sql, (id,))
+            usuario_Id = cursor.fetchone()
 
+            if usuario_Id:
+                # Si se encontró un usuario con el ID proporcionado, crea un objeto Usuario
+                return True
+            else:
+                return False  # No se encontró ningún usuario con ese ID
+
+        except mysql.connector.Error as error:
+            print(f"Error al buscar usuario por ID: {error}")
+            return False

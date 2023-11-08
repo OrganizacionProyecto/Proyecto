@@ -135,7 +135,8 @@ def main():
                 print("1. Registrar Pedido")
                 print("2. Eliminar Pedido")
                 print("3. Ver todos los pedidos")
-                print("4. Volver al Menú Principal")
+                print("4. Actualizar estado de pedido")
+                print("5. Volver al Menú Principal")
                 opcion = input("Seleccione una opción: ")
 
                 if opcion == "1":
@@ -172,12 +173,19 @@ def main():
                     print("\nLista de Pedidos:")
                     pedido=Pedido(id=None, id_usuario=None, estado=None)
                     pedido.mostrarTodosLosPedidos(conexion)
+                
                 elif opcion == "4":
+                    # Actualizar el estado de un pedido
+                    pedido=Pedido(id=None, id_usuario=None, estado=None)
+                    pedido.procesarPedido(conexion)
+                    
+                elif opcion == "5":
                     break
 
                 else:
                     print("Opción no válida. Por favor, seleccione una opción válida.")
 
+                        
                         
         if op == "5":
             while True:   
@@ -187,7 +195,8 @@ def main():
                 print("3. Eliminar Usuario")
                 print("4. Actualizar usuario")
                 print("5. Mostrar Usuarios")
-                print("6. Volver al Menú Principal")
+                print("6. Actualizar contraseña")
+                print("7. Volver al menu principal")
 
                 opcion = input("Seleccione una opción: ")
                 if opcion == "1":
@@ -222,6 +231,9 @@ def main():
                     usuario = Usuario(id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
                     usuario.mostrarTodosLosUsuarios(conexion)
                 elif opcion == "6":
+                    usuario = Usuario(id=None, nombre=None, apellido=None, correo=None, contrasenia=None, domicilio=None, tipo=None)
+                    usuario.actualizarContrasenia(conexion)
+                elif opcion == "7":
                     break
                             
         if op == "6":
