@@ -1,7 +1,5 @@
 //evento mensaje envio formulario contacto
 
-
-
 const imagenes = ["imag_productos/aceite_coco.jpeg", "imag_productos/cafe_verde.jpeg", "imag_productos/garcimax.jpeg"];
 let index = 0;
 
@@ -13,6 +11,8 @@ function cambiarImagen() {
 cambiarImagen(); // Muestra la primera imagen de inmediato
 
 setInterval(cambiarImagen, 2000); // Cambia de imagen cada 2 segundos
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.querySelector('.form2');
@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-    return email.includes('@');
+    return emailRegex.test(email);
+   
   }
 });
 
